@@ -14,7 +14,7 @@ npm i --save pyke
 ## Example
 
 ```javascript
-const {Pyke, Regions} = require('pyke');
+const {Pyke, Regions, DDragon} = require('pyke');
 const api = new Pyke('Your api Key');
 
 var region = "euw";
