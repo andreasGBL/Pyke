@@ -1,7 +1,9 @@
 # Pyke for API RiotGames
 <div align="center">
   <a href="https://david-dm.org/systeme-cardinal/node-Pyke"><img src="https://img.shields.io/david/systeme-cardinal/node-Pyke.svg" alt="Dependencies" /></a>
+  <a href="https://discord.gg/Fzj4bG6"><img src="https://discordapp.com/api/guilds/457552462874804225/embed.png" alt="Discord server" /></a>
 </div>
+
 ## npm
 
 ```sh
