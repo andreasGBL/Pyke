@@ -1,4 +1,4 @@
-# Miss-Fortune for API RiotGames
+# Pyke for API RiotGames
 
 ## npm
 
