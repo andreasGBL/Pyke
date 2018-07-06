@@ -45,8 +45,11 @@ module.exports = class Summoner {
      */
     async getBySummonerId(summonerId, regionId) {
         return new Promise(async (resolve, reject) => {
-            await got.get(`https://${regionId + api_url + endpoints.summoner.summonerId + summonerId + '?api_key=' + this.api_key}`, {
-                json: true
+            await got.get(`https://${regionId + api_url + endpoints.summoner.summonerId + summonerId}`, { {
+                headers:{
+                    "X-Riot-Token": this.api_key
+                },
+               json: true,
             }).then(data => {
                 var body = data.body;
                 resolve({
@@ -54,7 +57,8 @@ module.exports = class Summoner {
                     accountId: body.accountId,
                     summonerLevel: body.summonerLevel,
                     profileIconId: body.profileIconId,
-                    name: body.name
+                    name: body.name,
+                    profileIconUrl: `https://avatar.leagueoflegends.com/${regionId}/${encodeURIComponent(body.name)}.png`
                 });
             }).catch(error => {
                 reject({
@@ -72,8 +76,11 @@ module.exports = class Summoner {
      */
     async getByAccountId(accountId, regionId) {
         return new Promise(async (resolve, reject) => {
-            await got.get(`https://${regionId + api_url + endpoints.summoner.accountId + accountId + '?api_key=' + this.api_key}`, {
-                json: true
+            await got.get(`https://${regionId + api_url + endpoints.summoner.accountId + accountId}`,  {
+                headers:{
+                    "X-Riot-Token": this.api_key
+                },
+               json: true,
             }).then(data => {
                 var body = data.body;
                 resolve({
@@ -81,7 +88,8 @@ module.exports = class Summoner {
                     accountId: body.accountId,
                     summonerLevel: body.summonerLevel,
                     profileIconId: body.profileIconId,
-                    name: body.name
+                    name: body.name,
+                    profileIconUrl: `https://avatar.leagueoflegends.com/${regionId}/${encodeURIComponent(body.name)}.png`
                 });
             }).catch(error => {
                 reject({
