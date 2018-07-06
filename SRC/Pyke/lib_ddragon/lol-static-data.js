@@ -88,6 +88,7 @@ module.exports = class Download {
     async getReforgedRunes(locale, version) {
 
     };
+    
     /**
     * @param {Object} opts Options for API
     * @param {string} opts.locale Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
