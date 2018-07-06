@@ -6,7 +6,7 @@
   "scripts": {
     "test": "./Exemple/simple_example.js"
   },
-  "repository": "https://github.com/systeme-cardinal/Miss-Fortune.git",
+  "repository": "https://github.com/systeme-cardinal/node-Pyke.git",
   "author": "DoctaEnkoda <bierquejason@gmail.com>",
   "license": "GPL-3.0",
   "dependencies": {
