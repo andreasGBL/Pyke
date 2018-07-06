@@ -14,8 +14,11 @@ module.exports = class Summoner {
      */
     async getBySummonerName(summonerName, regionId) {
         return new Promise(async (resolve, reject) => {
-            await got.get(`https://${regionId + api_url + endpoints.summoner.summonerName + encodeURIComponent(summonerName) + '?api_key=' + this.api_key}`, {
-                json: true
+            await got.get(`https://${regionId + api_url + endpoints.summoner.summonerName + encodeURIComponent(summonerName)}`, {
+                headers:{
+                    "X-Riot-Token": this.api_key
+                },
+               json: true,
             }).then(data => {
                 var body = data.body;
                 resolve({
@@ -23,7 +26,7 @@ module.exports = class Summoner {
                     accountId: body.accountId,
                     summonerLevel: body.summonerLevel,
                     profileIconId: body.profileIconId,
-                    profileIconUrl: "", // Update 
+                    profileIconUrl: `https://avatar.leagueoflegends.com/${regionId}/${encodeURIComponent(summonerName)}.png`,
                     name: body.name
                 });
             }).catch(error => {
