@@ -4,7 +4,7 @@
   "description": "Librairie RIOTAPI for NodeJS",
   "main": "main.js",
   "scripts": {
-    "test": "./Exemple/simple_example.js"
+    "test": "./Exemple/Exemple-ddragon.js"
   },
   "repository": "https://github.com/systeme-cardinal/node-Pyke.git",
   "author": "DoctaEnkoda <bierquejason@gmail.com>",
