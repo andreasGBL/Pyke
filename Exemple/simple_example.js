@@ -1,4 +1,4 @@
-const pyke = require('../Pyke/index'),
+const pyke = require('pyke'),
     api = new pyke("Your API Key");
 
 const enmap = require('enmap');
