@@ -45,7 +45,7 @@ module.exports = class Summoner {
      */
     async getBySummonerId(summonerId, regionId) {
         return new Promise(async (resolve, reject) => {
-            await got.get(`https://${regionId + api_url + endpoints.summoner.summonerId + summonerId}`, { {
+            await got.get(`https://${regionId + api_url + endpoints.summoner.summonerId + summonerId}`, {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
