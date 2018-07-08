@@ -1,4 +1,4 @@
-const {DDragon, Miss_Fortune} = require('../main');
+const {DDragon, Miss_Fortune} = require('pyke');
 
 const data = new DDragon();
 data.DDragon.getRuneList({
