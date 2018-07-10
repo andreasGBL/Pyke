@@ -10,7 +10,7 @@ module.exports = class Summoner {
      * 
      * @param {String} summonerName Nom de l'invocateur
      * @param {String} regionId Region
-     * @returns {Promise<{id: String, accountId: String, summonerLevel: String, profileIconId: String, name: String}>}
+     * @returns {Promise<{id: String, accountId: String, summonerLevel: String, profileIconId: String, profileIconUrl: String, name: String}>}
      */
     async getBySummonerName(summonerName, regionId) {
         return new Promise(async (resolve, reject) => {
