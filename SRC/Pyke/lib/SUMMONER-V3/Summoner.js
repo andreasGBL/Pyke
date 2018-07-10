@@ -41,7 +41,7 @@ module.exports = class Summoner {
      * 
      * @param {String} summonerId Id de l'invocateur
      * @param {String} regionId Region
-     * @returns {Promise<{id: String, accountId: String, summonerLevel: String, profileIconId: String, name: String}>}
+     * @returns {Promise<{id: String, accountId: String, summonerLevel: String, profileIconId: String, profileIconUrl: String, name: String}>}
      */
     async getBySummonerId(summonerId, regionId) {
         return new Promise(async (resolve, reject) => {
@@ -72,7 +72,7 @@ module.exports = class Summoner {
      * 
      * @param {String} accountId AccountId de l'invocateur
      * @param {String} regionId Region
-     * @returns {Promise<{id: String, accountId: String, summonerLevel: String, profileIconId: String, name: String}>}
+     * @returns {Promise<{id: String, accountId: String, summonerLevel: String, profileIconId: String, profileIconUrl: String, name: String}>}
      */
     async getByAccountId(accountId, regionId) {
         return new Promise(async (resolve, reject) => {
