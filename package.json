@@ -1,6 +1,6 @@
 {
   "name": "pyke",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Librairie RIOTAPI for NodeJS",
   "main": "main.js",
   "scripts": {
