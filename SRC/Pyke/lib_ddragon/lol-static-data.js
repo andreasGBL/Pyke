@@ -1,13 +1,4 @@
 const got = require('got');
-const url = 'https://ddragon.leagueoflegends.com';
-const endpoints = {
-    //version
-    version: '/api/versions.json',
-    languages: '/cdn/languages.json',
-    cdn: '/cdn',
-    data: '/data/',
-};
-
 const summoner_spell = require('./summoner_spell');
 module.exports = class Download {
     constructor() {
