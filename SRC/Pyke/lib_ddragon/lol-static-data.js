@@ -3,12 +3,13 @@ const summoner_spell = require('./summoner_spell');
 
 module.exports = class Download {
     constructor() {
-
+        this.base_url_https = 'https://ddragon.leagueoflegends.com';
+        this.base_url_http = 'http://ddragon.leagueoflegends.com';
     };
 
     async getVersions() {
         return new Promise(async (resolve, reject) => {
-            await got.get(`http://ddragon.leagueoflegends.com/api/versions.json`, { json: true })
+            await got.get(`https://ddragon.leagueoflegends.com/api/versions.json`, { json: true })
                 .then(data => {
                     resolve(data.body);
                 })
@@ -24,7 +25,7 @@ module.exports = class Download {
         var locale = opts.locale || "fr_FR";
         var version = opts.version || (await this.getVersions())[0];
         return new Promise(async (resolve, reject) =>{
-            await got.get(`http://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/championFull.json`, {
+            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/championFull.json`, {
                 json: true
             }).catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) })
             .then(data =>{
@@ -61,23 +62,80 @@ module.exports = class Download {
     
      */
     async getItemList(opts) {
-
+        var locale = opts.locale || 'fr_FR';
+        var version = opts.version || (await this.getVersions())[0];
+        return new Promise(async (resolve, reject) =>{
+            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/item.json`, {json: true})
+                .then(data =>{
+                    var response = data.body;
+                    resolve(response);
+                }).catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) });
+        });
     };
+
+    /**
+     * @param {Object} opts Options for API
+     * @param {long} opts.id Item ID
+     * @param {string} opts.locale Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+     * @param {string} opts.version Patch version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.   
+     */
 
     async getItemById(opts) {
-
+        return new Promise(async (resolve, reject) =>{
+            if (!opts.id) reject({status: {status_code: 404, message: 'Data not Found'}});
+            var ItemList = await this.getItemList({
+                locale: opts.locale,
+                version: opts.version || (await this.getVersions())[0]
+            }).catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) });
+            var itemid = ItemList['data'][opts.id];
+            if(!itemid) reject({status: {status_code: 404, message: 'Data not Found'}});
+            resolve(itemid);
+        });
     };
 
+    /**
+     * @param {Object} opts Options for API
+     * @param {string} opts.locale Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+     * @param {string} opts.version Patch version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.   
+     */
     async getLanguageStrings(opts) {
-
+        var locale = opts.locale || 'fr_FR';
+        var version = opts.version || (await this.getVersions())[0];
+        return new Promise(async (resolve, reject) =>{
+            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/language.json`, {json: true})
+                .then(data =>{
+                    var response = data.body;
+                    resolve(response);
+                }).catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) });
+        });
     };
 
     async getLanguages() {
-
+        return new Promise(async (resolve, reject) => {
+            await got.get(`https://ddragon.leagueoflegends.com/cdn/languages.json`, { json: true })
+                .then(data => {
+                    resolve(data.body);
+                })
+                .catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) });
+        })
     };
 
-    async getMapData(opts) {
+    /**
+     * @param {Object} opts Options for API
+     * @param {string} opts.locale Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+     * @param {string} opts.version Patch version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.   
+     */
 
+    async getMapData(opts) {
+        var locale = opts.locale || 'fr_FR';
+        var version = opts.version || (await this.getVersions())[0];
+        return new Promise(async (resolve, reject) =>{
+            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/map.json`, {json: true})
+                .then(data =>{
+                    var response = data.body;
+                    resolve(response);
+                }).catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) });
+        });
     };
 
     async getMasteryList(opts) {
@@ -88,24 +146,74 @@ module.exports = class Download {
 
     };
 
-    async getProfileIcons(locale, version) {
-
+    /**
+     * @param {Object} opts Options for API
+     * @param {string} opts.locale Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+     * @param {string} opts.version Patch version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.   
+     */
+    async getProfileIcons(opts) {
+        var locale = opts.locale || 'fr_FR';
+        var version = opts.version || (await this.getVersions())[0];
+        return new Promise(async (resolve, reject) =>{
+            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/profileicon.json`, {json: true})
+                .then(data =>{
+                    var response = data.body;
+                    resolve(response);
+                }).catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) });
+        });
     };
 
-    async getRealm() {
-
+    /**
+     * @param {Object} opts Options for API
+     * @param {string} opts.region Dont used RegionID but just Region (na, euw, eune...)
+     */
+    async getRealm(opts) {
+        var region = opts.region || 'na';
+        return new Promise(async (resolve, reject) =>{
+            await got.get(`https://ddragon.leagueoflegends.com/realms/${region.toLowerCase()}.json`, {json: true})
+                .then(data =>{
+                    var response = data.body;
+                    resolve(response);
+                }).catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) });
+        });
     };
 
-    async getReforgedRunePaths(locale, version) {
-
+    /**
+     * @param {Object} opts Options for API
+     * @param {string} opts.locale Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+     * @param {string} opts.version Patch version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.   
+     */
+    async getReforgedRunePaths(opts) {
+        var locale = opts.locale || 'fr_FR';
+        var version = opts.version || (await this.getVersions())[0];
+        return new Promise(async (resolve, reject) =>{
+            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/runesReforged.json`, {json: true})
+                .then(data =>{
+                    var response = data.body;
+                    resolve(response);
+                }).catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) });
+        });
     };
 
-    async getReforgedRunePathById(id, locale, version) {
-
-    };
-
-    async getReforgedRunes(locale, version) {
-
+        /**
+     * @param {Object} opts Options for API
+     * @param {long} opts.id Reforged rune path ID
+     * @param {string} opts.locale Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+     * @param {string} opts.version Patch version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.   
+     */
+    async getReforgedRunePathById(opts) {
+        return new Promise(async (resolve, reject) =>{
+            if (!opts.id) reject({status: {status_code: 404, message: 'Data not Found'}});
+            var ReforgedRunePaths = new Array();
+            ReforgedRunePaths = await this.getReforgedRunePaths({
+                locale: opts.locale,
+                version: opts.version || (await this.getVersions())[0]
+            }).catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) });
+            const slots = ReforgedRunePaths.find(RunePathById => RunePathById.id === opts.id);
+            if (!slots) reject({status: {status_code: 404, message: 'Data not Found'}});
+            resolve(slots)
+            
+        });
     };
     
     /**
@@ -119,7 +227,7 @@ module.exports = class Download {
         var locale = opts.locale || 'fr_FR';
         var version = opts.version || '7.23.1';
         return new Promise(async (resolve, reject) =>{
-            await got.get(`http://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/rune.json`, {json: true})
+            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/rune.json`, {json: true})
                 .then(data =>{
                     var response = data.body;
                     resolve(response);
@@ -141,7 +249,7 @@ module.exports = class Download {
         var version = opts.version || '7.23.1';
         return new Promise(async (resolve, reject) =>{
             if (!id) reject({status: {status_code: 404, message: 'Data not Found'}});
-            await got.get(`http://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/rune.json`, {json: true})
+            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/rune.json`, {json: true})
                 .then(data =>{
                     var runeId = data.body.data[id];
                     if (!runeId) reject({ status: { status_code: 404, message: 'Data not Found' } });
@@ -164,7 +272,7 @@ module.exports = class Download {
         var locale = opts.locale || 'fr_FR';
         var version = opts.version || (await this.getVersions())[0];
         return new Promise(async (resolve, reject) => {
-            await got.get(`http://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/summoner.json`, { json: true })
+            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/summoner.json`, { json: true })
                 .then(async data => {
                     var body = data.body;
                     if (dataById == true) {
@@ -197,7 +305,7 @@ module.exports = class Download {
                     }
                 })
             } else {
-                await got.get(`http://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/summoner.json`, { json: true })
+                await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/summoner.json`, { json: true })
                     .catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) })
                     .then(async data => {
                         var body = data.body;
@@ -221,7 +329,7 @@ module.exports = class Download {
     async getFullTarballLink(version) {
         return new Promise(async (resolve, reject) => {
             if (!version) {
-                await got.get(`http://ddragon.leagueoflegends.com/api/versions.json`, { json: true })
+                await got.get(`https://ddragon.leagueoflegends.com/api/versions.json`, { json: true })
                     .then(data => {
                         resolve(`https://ddragon.leagueoflegends.com/cdn/dragontail-${data.body[0]}.tgz`);
                     })
