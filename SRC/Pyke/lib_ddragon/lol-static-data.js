@@ -1,18 +1,37 @@
 const got = require('got');
 const summoner_spell = require('./summoner_spell');
+
 module.exports = class Download {
     constructor() {
 
     };
 
+    async getVersions() {
+        return new Promise(async (resolve, reject) => {
+            await got.get(`http://ddragon.leagueoflegends.com/api/versions.json`, { json: true })
+                .then(data => {
+                    resolve(data.body);
+                })
+                .catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) });
+        })
+    }
     /**
      * @param {Object} opts Options for API
      * @param {string} opts.locale Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
      * @param {string} opts.version Patch version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-     * @param {boolean} opts.dataById If specified as true, the returned data map will use the champions' IDs as the keys. If not specified or specified as false, the returned data map will use the champions' keys instead.
      */
     async getChampionList(opts) {
-
+        var locale = opts.locale || "fr_FR";
+        var version = opts.version || (await this.getVersions())[0];
+        return new Promise(async (resolve, reject) =>{
+            await got.get(`http://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/championFull.json`, {
+                json: true
+            }).catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) })
+            .then(data =>{
+                var body = data.body;
+                resolve(body);
+            })
+        });
     };
 
     /**
@@ -23,7 +42,16 @@ module.exports = class Download {
      * 
      */
     async getChampionById(opts) {
-
+        var id = opts.id || undefined;
+        var locale = opts.locale || "fr_FR";
+        var version = opts.version || (await this.getVersions())[0];
+        return new Promise(async (resolve, reject) =>{
+            if (!id) reject({status: {status_code: 404, message: 'Data not Found'}});
+            var ChampionList = (await this.getChampionList({locale: locale, version: version}));
+            var name = ChampionList['keys'][id];
+            if (!name) reject({status: {status_code: 404, message: 'Data not Found'}});
+            resolve(ChampionList["data"][name]); 
+        })
     };
 
     /**
@@ -207,15 +235,5 @@ module.exports = class Download {
             }
         })
     };
-
-    async getVersions() {
-        return new Promise(async (resolve, reject) => {
-            await got.get(`http://ddragon.leagueoflegends.com/api/versions.json`, { json: true })
-                .then(data => {
-                    resolve(data.body);
-                })
-                .catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) });
-        })
-    }
 
 }
