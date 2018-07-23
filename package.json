@@ -1,6 +1,6 @@
 {
   "name": "pyke",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Librairie RIOTAPI for NodeJS",
   "main": "main.js",
   "scripts": {
@@ -11,5 +11,16 @@
   "license": "GPL-3.0",
   "dependencies": {
     "got": "^8.3.2"
-  }
+  },
+  "keywords": [
+    "riot",
+    "games",
+    "riot games",
+    "api",
+    "league",
+    "legends",
+    "league of legends",
+    "ddragon",
+    "pyke"
+  ]
 }
