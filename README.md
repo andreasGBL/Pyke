@@ -39,6 +39,40 @@ Version 1.0.4 => Create reposit Pyke <br />
   ``getAllChampionMasteries()`` => Get all champion mastery entries sorted by number of champion points descending. <br />
   ``getChampionMastery()`` => Get a champion mastery by player ID and champion ID. <br />
   ``getChampionMasteryScore()`` => Get a player's total champion mastery score, which is the sum of individual champion mastery levels.
+#### Example
+```javascript
+const {Pyke, Regions} = require('pyke'); // Call Lib
+const riotAPidev = new Pyke('here your api key on https://developer.riotgames.com/'); // Call RIOT
+
+riotAPidev.masteries.getAllChampionMasteries('79858287', Regions['euw']).then(data =>{
+  console.log(data);
+  /* data => [
+    {
+        "championLevel": 7,
+        "chestGranted": true,
+        "championPoints": 436910,
+        "championPointsSinceLastLevel": 415310,
+        "playerId": 79858287,
+        "championPointsUntilNextLevel": 0,
+        "tokensEarned": 0,
+        "championId": 53,
+        "lastPlayTime": 1531071031000
+    },
+    {
+        "championLevel": 7,
+        "chestGranted": true,
+        "championPoints": 168033,
+        "championPointsSinceLastLevel": 146433,
+        "playerId": 79858287,
+        "championPointsUntilNextLevel": 0,
+        "tokensEarned": 0,
+        "championId": 75,
+        "lastPlayTime": 1531763227000
+    }
+    ...]
+    */
+}).catch(console.error);
+```
 
 
 
