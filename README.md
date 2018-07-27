@@ -15,15 +15,15 @@
 npm i --save pyke
 ```
 
-##Installation and Usage
+## Installation and Usage
 
 Pyke minimum required Node.JS version 7.6 for native asynchrone.
 
-##Library Used
+## Library Used
 
 Pyke used [RIOT API](https://developer.riotgames.com/) and Static Dragon actualy [DDragon](https://ddragon.leagueoflegends.com/tools)
 
-##Version
+## Version
 
 Version 1.0.9 (latest) => Fix error DDragon on my code.
 Version 1.0.8 => Replace LolStaticDatav3 by DDragon.
