@@ -25,17 +25,17 @@ Pyke used [RIOT API](https://developer.riotgames.com/) and Static Dragon actualy
 
 ## Version
 
-Version 1.0.9 (latest) => Fix error DDragon on my code.
-Version 1.0.8 => Replace LolStaticDatav3 by DDragon.
-Version 1.0.7 => Add DDragon
-Version 1.0.6 => Add JSDOC
-Version 1.0.5 => Fix Librairie Riot
-Version 1.0.4 => Create reposit Pyke
+Version 1.0.9 (latest) => Fix error DDragon on my code. <br />
+Version 1.0.8 => Replace LolStaticDatav3 by DDragon. <br />
+Version 1.0.7 => Add DDragon <br />
+Version 1.0.6 => Add JSDOC <br />
+Version 1.0.5 => Fix Librairie Riot <br />
+Version 1.0.4 => Create reposit Pyke <br />
 
 ## Endpoints
 
 ### RiotLib
-*CHAMPION-MASTERY-V3*
+*CHAMPION-MASTERY-V3* <br />
   ``getAllChampionMasteries()`` => This object contains single Champion Mastery information for player and champion combination. 
 
 
