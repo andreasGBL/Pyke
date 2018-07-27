@@ -35,8 +35,10 @@ Version 1.0.4 => Create reposit Pyke <br />
 ## Endpoints
 
 ### RiotLib
-*CHAMPION-MASTERY-V3* <br />
-  ``getAllChampionMasteries()`` => This object contains single Champion Mastery information for player and champion combination. 
+**CHAMPION-MASTERY-V3** <br />
+  ``getAllChampionMasteries()`` => Get all champion mastery entries sorted by number of champion points descending. <br />
+  ``getChampionMastery()`` => Get a champion mastery by player ID and champion ID. <br />
+  ``getChampionMasteryScore()`` => Get a player's total champion mastery score, which is the sum of individual champion mastery levels.
 
 
 
