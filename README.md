@@ -32,11 +32,11 @@ Version 1.0.6 => Add JSDOC
 Version 1.0.5 => Fix Librairie Riot
 Version 1.0.4 => Create reposit Pyke
 
-##Endpoints
+## Endpoints
 
-###RiotLib
+### RiotLib
 *CHAMPION-MASTERY-V3*
-  getAllChampionMasteries() => This object contains single Champion Mastery information for player and champion combination. 
+  ``getAllChampionMasteries()`` => This object contains single Champion Mastery information for player and champion combination. 
 
 
 
