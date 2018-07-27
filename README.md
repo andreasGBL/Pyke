@@ -15,23 +15,28 @@
 npm i --save pyke
 ```
 
-## Example
+##Installation and Usage
 
-```javascript
-const {Pyke, Regions, DDragon} = require('pyke');
-const api = new Pyke('Your api Key');
+Pyke minimum required Node.JS version 7.6 for native asynchrone.
 
-var region = "euw";
-var regionsId = Regions[region]; // => euw1
+##Library Used
 
-api.summoner.getBySummonerName("SP Jason", regionsId)
-  .then(data =>{
-    return console.log(data);
-  })
-  .catch(error =>{
-    return console.error(error)
-  });
-```
+Pyke used [RIOT API](https://developer.riotgames.com/) and Static Dragon actualy [DDragon](https://ddragon.leagueoflegends.com/tools)
+
+##Version
+
+Version 1.0.9 (latest) => Fix error DDragon on my code.
+Version 1.0.8 => Replace LolStaticDatav3 by DDragon.
+Version 1.0.7 => Add DDragon
+Version 1.0.6 => Add JSDOC
+Version 1.0.5 => Fix Librairie Riot
+Version 1.0.4 => Create reposit Pyke
+
+##Endpoints
+
+###RiotLib
+*CHAMPION-MASTERY-V3*
+  getAllChampionMasteries() => This object contains single Champion Mastery information for player and champion combination. 
 
 
 
