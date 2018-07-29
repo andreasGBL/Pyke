@@ -10,7 +10,7 @@ module.exports = class status {
      * 
      * @param {String} regionId Region
      * @param {String} matchId Match
-     * @returns {Promise<{seasonId: String, queueId: String, gameId: String, participantIdentities: Array,gameVersion: String, platformId: String, gameMode: String, mapId: String, gameType: String, teams: Array, participants: Array, gameCreation: String, gameDuration: String}>}
+     * 
      */
     async getMatch (matchId, regionId) {
         return new Promise(async (resolve, reject) => {
