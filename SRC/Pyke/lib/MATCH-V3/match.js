@@ -12,7 +12,7 @@ module.exports = class status {
      * @param {String} matchId Match
      * @returns {Promise<{seasonId: String, queueId: String, gameId: String, participantIdentities: Array,gameVersion: String, platformId: String, gameMode: String, mapId: String, gameType: String, teams: Array, participants: Array, gameCreation: String, gameDuration: String}>}
      */
-    async getMatch (regionId, matchId) {
+    async getMatch (matchId, regionId) {
         return new Promise(async (resolve, reject) => {
             await got.get(`https://${regionId + api_url + endpoints.match.matches + matchId}`, {
                 headers:{
@@ -22,21 +22,7 @@ module.exports = class status {
             })
             .then(data =>{
                 var body = data.body;
-                resolve({
-                    seasonId: body.seasonId,
-                    queueId: body.queueId,
-                    gameId: body.gameId,
-                    participantIdentities: body.participantIdentities,
-                    gameVersion: body.gameVersion,
-                    platformId: body.platformId,
-                    gameMode: body.gameMode,
-                    mapId: body.mapId,
-                    gameType: body.gameType,
-                    teams: body.teams,
-                    participants: body.participants,
-                    gameDuration: body.gameDuration,
-                    gameCreation: body.gameCreation
-                })
+                resolve(body)
             })
             .catch(error => {
                 reject({
