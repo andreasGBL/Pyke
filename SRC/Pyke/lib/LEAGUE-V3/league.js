@@ -84,77 +84,67 @@ module.exports = class League{
             await got.get(`https://${regionId + api_url + endpoints.league.bysummonerId + summonerId + '?api_key=' + this.api_key}`, {
                 json: true
             }).then(data => {
-                var body = data.body;
-                var RANKED_SOLO_5x5;
-                var RANKED_FLEX_SR;
-                var RANKED_FLEX_TT;
-                
-                RANKED_SOLO_5x5 = {
-                    leagueId: '',
-                    leagueName: '',
-                    tier: 'Unranked',
-                    queueType: 'RANKED_SOLO_5x5',
-                    rank: '',
-                    playerOrTeamId: summonerId,
-                    playerOrTeamName: '',
-                    leaguePoints: '',
-                    wins: '',
-                    losses: '',
-                    veteran: true,
-                    inactive: false,
-                    freshBlood: false,
-                    hotStreak: false
-                };
-                RANKED_FLEX_SR = {
-                    leagueId: '',
-                    leagueName: '',
-                    tier: 'Unranked',
-                    queueType: 'RANKED_FLEX_SR',
-                    rank: '',
-                    playerOrTeamId: summonerId,
-                    playerOrTeamName: '',
-                    leaguePoints: '',
-                    wins: '',
-                    losses: '',
-                    veteran: true,
-                    inactive: false,
-                    freshBlood: false,
-                    hotStreak: false
-                };
-                RANKED_FLEX_TT = {
-                    leagueId: '',
-                    leagueName: '',
-                    tier: 'Unranked',
-                    queueType: 'RANKED_FLEX_TT',
-                    rank: '',
-                    playerOrTeamId: summonerId,
-                    playerOrTeamName: '',
-                    leaguePoints: '',
-                    wins: '',
-                    losses: '',
-                    veteran: true,
-                    inactive: false,
-                    freshBlood: false,
-                    hotStreak: false
-                };
-                
-                for (var i = 0; i <= (body.length - 1); i++) {
-                    switch (body[i].queueType) {
-                        case 'RANKED_SOLO_5x5':
-                            RANKED_SOLO_5x5 = body[i];
-                            break;
-                        case 'RANKED_FLEX_SR':
-                            RANKED_FLEX_SR = body[i]
-                            break;
-                        case 'RANKED_FLEX_TT':
-                            RANKED_FLEX_TT = body[i]
-                            break;
-                        default:
-                            RANKED_FLEX_TT;
-                            RANKED_FLEX_SR;
-                            RANKED_SOLO_5x5;
-                    }
+                var arr = new Array(data.body.length);
+                arr = data.body;
+
+                var RANKED_SOLO_5x5 = arr.find(value => value.queueType == 'RANKED_SOLO_5x5');
+                var RANKED_FLEX_SR = arr.find(value => value.queueType == "RANKED_FLEX_SR");
+                var RANKED_FLEX_TT = arr.find(value => value.queueType == "RANKED_FLEX_TT");
+                if (!RANKED_SOLO_5x5) {
+                    RANKED_SOLO_5x5 = {
+                        leagueId: '',
+                        leagueName: '',
+                        tier: 'Unranked',
+                        queueType: 'RANKED_SOLO_5x5',
+                        rank: '',
+                        playerOrTeamId: summonerId,
+                        playerOrTeamName: '',
+                        leaguePoints: '',
+                        wins: '',
+                        losses: '',
+                        veteran: true,
+                        inactive: false,
+                        freshBlood: false,
+                        hotStreak: false
+                    };
                 }
+                if (!RANKED_FLEX_SR) {
+                    RANKED_FLEX_SR = {
+                        leagueId: '',
+                        leagueName: '',
+                        tier: 'Unranked',
+                        queueType: 'RANKED_FLEX_SR',
+                        rank: '',
+                        playerOrTeamId: summonerId,
+                        playerOrTeamName: '',
+                        leaguePoints: '',
+                        wins: '',
+                        losses: '',
+                        veteran: true,
+                        inactive: false,
+                        freshBlood: false,
+                        hotStreak: false
+                    };
+                }
+                if (!RANKED_FLEX_TT) {
+                    RANKED_FLEX_TT = {
+                        leagueId: '',
+                        leagueName: '',
+                        tier: 'Unranked',
+                        queueType: 'RANKED_FLEX_TT',
+                        rank: '',
+                        playerOrTeamId: summonerId,
+                        playerOrTeamName: '',
+                        leaguePoints: '',
+                        wins: '',
+                        losses: '',
+                        veteran: true,
+                        inactive: false,
+                        freshBlood: false,
+                        hotStreak: false
+                    };
+                }
+                
                 resolve({
                     all: {
                         RANKED_SOLO_5x5: RANKED_SOLO_5x5,
