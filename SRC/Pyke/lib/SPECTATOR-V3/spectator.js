@@ -11,7 +11,7 @@ module.exports = class status {
      * @param {String} regionId Region
      * @returns {Promise<{name: String, region_tag: String, hostname: String, services: Array, slug: String, locales: Array}>}
      */
-    async getCurrentGameInfoBySummoner (regionId, summonerId) {
+    async getCurrentGameInfoBySummoner (summonerId, regionId) {
         return new Promise(async (resolve, reject) => {
             await got.get(`https://${regionId + api_url + endpoints.spectator.activegames + summonerId }`, {
                 headers:{
