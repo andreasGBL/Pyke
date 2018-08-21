@@ -46,5 +46,9 @@ module.exports = {
   19:{
       name: "Substructure 43",
       notes: "PROJECT: Hunters Map"
-    }
+  },
+  21:{
+      name: "Nexus Blitz",
+      notes: "Nexus Blitz map"
+  }
 }
