@@ -16,7 +16,8 @@ class Pyke {
         this.league = new leaguev3(this.api_key); // League
         this.match = new matchv3(this.api_key); // Match
         this.spectator = new spectatorv3(this.api_key); // Ingame      
-        this.lol_static_data = console.log('The lol-static-data-v3 API is now deprecated and will be removed on Monday, August 27th, 2018. Please use Data Dragon as a replacement.')
+        this.lol_static_data = console.log('The lol-static-data-v3 API is now deprecated and will be removed on Monday, August 27th, 2018. Please use Data Dragon as a replacement.');
+        this.discord = `https://discord.gg/riotapi`;
     }; 
 }
 
