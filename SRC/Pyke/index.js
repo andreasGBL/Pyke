@@ -28,11 +28,20 @@ class DDragon{
     }
 }
 
+//CommunityDragon
+class CommunityDragon {
+    constructor() {
+        this.discord = `https://discord.gg/C8xd8ag`;
+        this.cdn = new (require('./CommunityDragon/index'))();
+    }
+}
+
 // Exportation
 module.exports = {
     Pyke: Pyke,
     DDragon: DDragon,
     Regions: require('./regions.js'),
     statusCode: require('./statusCode.js'),
-    game_constants: require('./GAMECONSTANTS.js')
+    game_constants: require('./GAMECONSTANTS.js'),
+    CommunityDragon: CommunityDragon
 }
