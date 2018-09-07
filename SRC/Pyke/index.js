@@ -25,6 +25,7 @@ class DDragon{
     constructor(version){
         this.version = version;
         this.DDragon = new lib_ddragon();
+        
     }
 }
 
@@ -33,6 +34,7 @@ class CommunityDragon {
     constructor() {
         this.discord = `https://discord.gg/C8xd8ag`;
         this.cdn = new (require('./CommunityDragon/index'))();
+        this.link = `https://communitydragon.org/`;
     }
 }
 
