@@ -3,7 +3,7 @@ const got = require('got');
 const endpoints = {
   url: "https://www.masterypoints.com/api/v1.1",
   static: {
-    getServerList: "/static/servers,
+    getServerList: "/static/servers",
     getChampionList: "/static/champions"
   },
   Highscores: {
