@@ -21,3 +21,4 @@ const endpoints = {
     statsServerComparison: "/stats/server_comparison"
   }  
 }
+// This Api is not of RiotGames API
