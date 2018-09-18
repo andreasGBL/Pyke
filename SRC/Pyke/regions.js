@@ -6,7 +6,7 @@ module.exports = {
     kr: 'kr',
     lan: 'la1',
     las: 'la2',
-    na: 'na',
+    na: 'na1',
     oce: 'oc1',
     tr: 'tr1',
     ru: 'ru',
