@@ -18,7 +18,6 @@ module.exports = {
     kr: 'kr',
     la1: 'las',
     la2: 'lan',
-    na: 'na',
     na1: 'na',
     oc1: 'oce',
     tr1: 'tr',
