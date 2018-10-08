@@ -35,8 +35,8 @@ Pyke used [RIOT API](https://developer.riotgames.com/) and Static Dragon actualy
 
 ## Version
 
-Version 2.0.0 (latest) => Update got and add code
-Version 1.1.1 (github) => Add Community Dragon
+Version 2.0.0 (latest) => Update got and add code <br />
+Version 1.1.1 (github) => Add Community Dragon <br />
 Version 1.0.9 => Fix error DDragon on my code. <br />
 Version 1.0.8 => Replace LolStaticDatav3 by DDragon. <br />
 Version 1.0.7 => Add DDragon <br />
