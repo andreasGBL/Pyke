@@ -12,13 +12,21 @@
 ## npm
 
 ```sh
-npm i --save pyke
+  npm i --save pyke
+```
+
+## npm github (beta)
+ 
+```sh
+  npm i --save github:systeme-cardinal/Pyke
 ```
 
 ## Installation and Usage
 
 Pyke minimum required Node.JS version 7.6 for native asynchrone.
 You can help me for create a Wiki of Pyke :) 
+
+
 ## Library Used
 
 Pyke used [RIOT API](https://developer.riotgames.com/) and Static Dragon actualy [DDragon](https://ddragon.leagueoflegends.com/tools)
