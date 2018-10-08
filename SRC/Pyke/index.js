@@ -4,6 +4,7 @@ const summonerv3 = require('./lib/SUMMONER-V3/Summoner');
 const leaguev3 = require('./lib/LEAGUE-V3/league');
 const matchv3 = require('./lib/MATCH-V3/match');
 const spectatorv3 = require('./lib/SPECTATOR-V3/spectator');
+const apistatusv3 = require('./APIStatusAPI/index.js');
 
 const lib_ddragon = require('./lib_ddragon/lol-static-data');
 //Riot API
@@ -18,6 +19,7 @@ class Pyke {
         this.spectator = new spectatorv3(this.api_key); // Ingame      
         this.lol_static_data = console.log('The lol-static-data-v3 API is now deprecated and will be removed on Monday, August 27th, 2018. Please use Data Dragon as a replacement.');
         this.discord = `https://discord.gg/riotapi`;
+        this.status = new apistatusv3(); //API Status V3
     }; 
 }
 
