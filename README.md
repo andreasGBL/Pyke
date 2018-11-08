@@ -1,5 +1,3 @@
-coucou fireless
-
 # Pyke for API RiotGames
 <div align="center">
   <a href="https://david-dm.org/systeme-cardinal/node-Pyke"><img src="https://david-dm.org/systeme-cardinal/node-Pyke/status.svg" alt="Dependencies" /></a>
