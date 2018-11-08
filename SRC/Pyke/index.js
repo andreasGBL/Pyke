@@ -8,7 +8,7 @@ const apistatusv3 = require('./APIStatusAPI/index.js');
 
 const lib_ddragon = require('./lib_ddragon/lol-static-data');
 //Riot API
-class Pyke {
+class Pyke_V3 {
     constructor(api_key) {
         this.api_key = api_key; // Your API_KEY https://developer.riotgames.com/
         this.summoner = new summonerv3(this.api_key); // Summoner V3
@@ -17,7 +17,7 @@ class Pyke {
         this.league = new leaguev3(this.api_key); // League
         this.match = new matchv3(this.api_key); // Match
         this.spectator = new spectatorv3(this.api_key); // Ingame      
-        this.lol_static_data = console.log('The lol-static-data-v3 API is now deprecated and will be removed on Monday, August 27th, 2018. Please use Data Dragon as a replacement.');
+        //this.lol_static_data = console.log('The lol-static-data-v3 API is now deprecated and will be removed on Monday, August 27th, 2018. Please use Data Dragon as a replacement.');
         this.discord = `https://discord.gg/riotapi`;
         this.status = new apistatusv3(); //API Status V3
     }; 
@@ -41,8 +41,16 @@ class CommunityDragon {
     }
 }
 
+//Pyke V4 
+class Pyke {
+    constructor(api_key){
+        this.api_key = api_key; // Your API_KEY https://developer.riotgames.com/
+    }
+}
+
 // Exportation
 module.exports = {
+    PykeV3: Pyke_V3,
     Pyke: Pyke,
     DDragon: DDragon,
     Regions: require('./regions.js'),
