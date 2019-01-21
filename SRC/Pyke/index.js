@@ -8,7 +8,7 @@ const apistatusv3 = require('./APIStatusAPI/index.js');
 
 const lib_ddragon = require('./lib_ddragon/lol-static-data');
 //Riot API
-class Pyke_V3 {
+class Pyke {
     constructor(api_key) {
         this.api_key = api_key; // Your API_KEY https://developer.riotgames.com/
         this.summoner = new summonerv3(this.api_key); // Summoner V3
@@ -41,16 +41,9 @@ class CommunityDragon {
     }
 }
 
-//Pyke V4 
-class Pyke {
-    constructor(api_key){
-        this.api_key = api_key; // Your API_KEY https://developer.riotgames.com/
-    }
-}
 
 // Exportation
 module.exports = {
-    PykeV3: Pyke_V3,
     Pyke: Pyke,
     DDragon: DDragon,
     Regions: require('./regions.js'),
