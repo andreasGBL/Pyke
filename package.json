@@ -10,7 +10,7 @@
   "author": "DoctaEnkoda <bierquejason@gmail.com>",
   "license": "GPL-3.0",
   "dependencies": {
-    "got": "^9.2.2"
+    "got": "^9.6.0"
   },
   "keywords": [
     "riot",
