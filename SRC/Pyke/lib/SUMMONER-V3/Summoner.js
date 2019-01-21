@@ -27,7 +27,8 @@ module.exports = class Summoner {
                     summonerLevel: body.summonerLevel,
                     profileIconId: body.profileIconId,
                     profileIconUrl: `https://avatar.leagueoflegends.com/${regionId}/${encodeURIComponent(summonerName)}.png`,
-                    name: body.name
+                    name: body.name,
+                    puuid: body.puuid
                 });
             }).catch(error => {
                 reject({
@@ -58,7 +59,35 @@ module.exports = class Summoner {
                     summonerLevel: body.summonerLevel,
                     profileIconId: body.profileIconId,
                     name: body.name,
-                    profileIconUrl: `https://avatar.leagueoflegends.com/${regionId}/${encodeURIComponent(body.name)}.png`
+                    profileIconUrl: `https://avatar.leagueoflegends.com/${regionId}/${encodeURIComponent(body.name)}.png`,
+                    puuid: body.puuid
+                });
+            }).catch(error => {
+                reject({
+                    statuscode: error.statusCode,
+                    message: error.statusMessage
+                });
+            })
+        })
+    }
+    
+    async getByPUUID(puuid, regionId) {
+        return new Promise(async (resolve, reject) => {
+            await got.get(`https://${regionId + api_url + endpoints.summoner.puuid + puuid}`,  {
+                headers:{
+                    "X-Riot-Token": this.api_key
+                },
+               json: true,
+            }).then(data => {
+                var body = data.body;
+                resolve({
+                    id: body.id,
+                    accountId: body.accountId,
+                    summonerLevel: body.summonerLevel,
+                    profileIconId: body.profileIconId,
+                    name: body.name,
+                    profileIconUrl: `https://avatar.leagueoflegends.com/${regionId}/${encodeURIComponent(body.name)}.png`,
+                    puuid: body.puuid
                 });
             }).catch(error => {
                 reject({
@@ -89,7 +118,8 @@ module.exports = class Summoner {
                     summonerLevel: body.summonerLevel,
                     profileIconId: body.profileIconId,
                     name: body.name,
-                    profileIconUrl: `https://avatar.leagueoflegends.com/${regionId}/${encodeURIComponent(body.name)}.png`
+                    profileIconUrl: `https://avatar.leagueoflegends.com/${regionId}/${encodeURIComponent(body.name)}.png`,
+                    puuid: body.puuid
                 });
             }).catch(error => {
                 reject({
