@@ -14,7 +14,8 @@ module.exports = {
     summoner: {
         summonerName: '/lol/summoner/v4/summoners/by-name/',
         summonerId: '/lol/summoner/v4/summoners/',
-        accountId: '/lol/summoner/v4/summoners/by-account/'
+        accountId: '/lol/summoner/v4/summoners/by-account/',
+        puuid: '/lol/summoner/v4/summoners/by-puuid/'
     },
     //League V4
     league: {
@@ -25,7 +26,7 @@ module.exports = {
     },
     //LOL-STATUS-V4
     status: {
-        shard_data: '/lol/status/v4/shard-data'
+        shard_data: '/lol/status/v3/shard-data'
     },
     //MATCH-V4
     match: {
