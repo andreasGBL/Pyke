@@ -16,8 +16,8 @@ module.exports = class Champion {
      */
 
     async getAllChampionMasteries(summonerId, regionId) {
-        return new Promise(async (resolve, reject) => {
-            await got.get(`https://${regionId + api_url + endpoints.champion_mastery.masteryById + summonerId}?api_key=${this.api_key}`, { json: true })
+        return new Promise((resolve, reject) => {
+            got.get(`https://${regionId + api_url + endpoints.champion_mastery.masteryById + summonerId}?api_key=${this.api_key}`, { json: true })
                 .then(data => {
                     resolve(data.body);
                 })
@@ -73,8 +73,8 @@ module.exports = class Champion {
      * @returns {Promise<{score: String}>}
      */
     async getChampionMasteryScore(summonerId, regionId) {
-        return new Promise(async (resolve, reject) => {
-            await got.get(`https://${regionId + api_url + endpoints.champion_mastery.scoreById + summonerId + '?api_key=' + this.api_key}`, {
+        return new Promise((resolve, reject) => {
+            got.get(`https://${regionId + api_url + endpoints.champion_mastery.scoreById + summonerId + '?api_key=' + this.api_key}`, {
                 json: true
             })
                 .then(data => {
