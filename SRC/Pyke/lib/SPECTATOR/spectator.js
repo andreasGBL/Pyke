@@ -12,8 +12,8 @@ module.exports = class status {
      * @returns {Promise<{name: String, region_tag: String, hostname: String, services: Array, slug: String, locales: Array}>}
      */
     async getCurrentGameInfoBySummoner (summonerId, regionId) {
-        return new Promise(async (resolve, reject) => {
-            await got.get(`https://${regionId + api_url + endpoints.spectator.activegames + summonerId }`, {
+        return new Promise((resolve, reject) => {
+            got.get(`https://${regionId + api_url + endpoints.spectator.activegames + summonerId }`, {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
@@ -35,8 +35,8 @@ module.exports = class status {
      * @param {String} regionId Region
      */
     async getFeaturedGames (regionId) {
-        return new Promise(async (resolve, reject) =>{
-            await got.get(`https://${regionId + api_url + endpoints.spectator.feactured}`, {
+        return new Promise((resolve, reject) =>{
+            got.get(`https://${regionId + api_url + endpoints.spectator.feactured}`, {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
