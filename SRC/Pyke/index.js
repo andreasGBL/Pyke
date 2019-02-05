@@ -52,5 +52,6 @@ module.exports = {
     Regions: require('./regions.js'),
     statusCode: require('./statusCode.js'),
     game_constants: require('./GAMECONSTANTS.js'),
-    CommunityDragon: CommunityDragon
+    CommunityDragon: CommunityDragon,
+    MasteryPoints: new (require('./MasteryPoints/index'))
 }
