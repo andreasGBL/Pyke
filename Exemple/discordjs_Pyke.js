@@ -5,8 +5,8 @@ client.login('your token').then( () =>{
   console.log('Actualy connected');
 }).catch(console.error);
 
-const pyke = require('pyke');
-const pyke_api = new pyke('your api key');
+const {Pyke} = require('pyke');
+const  pyke_api = new Pyke('your api key');
 
 client.on('message', async message =>{
   if (message.content.startsWith('!lol test')){
