@@ -14,9 +14,9 @@ module.exports = class champion {
      * @returns {Promise<{}>}
      */
     async getChampions(regionId, freeToPlay){
-        return new Promise(async (resolve, reject) =>{
+        return new Promise((resolve, reject) =>{
             if (freeToPlay !== true) freeToPlay = false;
-            await got.get(`https://${regionId + api_url + endpoints.champion.championList + '?freeToPlay=' + freeToPlay + '&api_key=' + this.api_key}`, {json :true})
+            got.get(`https://${regionId + api_url + endpoints.champion.championList + '?freeToPlay=' + freeToPlay + '&api_key=' + this.api_key}`, {json :true})
                 .then(data =>{
                     resolve(data.body);
                 })
@@ -35,13 +35,13 @@ module.exports = class champion {
      * @returns {Promise<{rankedPlayEnabled: boolean, botEnabled: boolean, botMmEnabled: String, active: String, freeToPlay: String, id: String}>}
      */
     async getChampionsById(regionId, championId) {
-        return new Promise( async (resolve, reject) =>{
+        return new Promise((resolve, reject) =>{
             if (!championId) reject({
                 statuscode: "403",
                 message: "Forbidden"
             });
 
-            await got.get(`https://${regionId + api_url + endpoints.champion.championById + championId + '?api_key=' + this.api_key}`,{json : true})
+            got.get(`https://${regionId + api_url + endpoints.champion.championById + championId + '?api_key=' + this.api_key}`,{json : true})
                 .then(data =>{
                     var body = data.body;
                     resolve({
