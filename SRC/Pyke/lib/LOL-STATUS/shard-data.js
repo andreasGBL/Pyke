@@ -12,8 +12,8 @@ module.exports = class status {
      * @returns {Promise<{name: String, region_tag: String, hostname: String, services: Array, slug: String, locales: Array}>}
      */
     async getShardData (regionId) {
-        return new Promise(async (resolve, reject) => {
-            await got.get(`https://${regionId + api_url + endpoints.status.shard_data}`, {
+        return new Promise((resolve, reject) => {
+            got.get(`https://${regionId + api_url + endpoints.status.shard_data}`, {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
