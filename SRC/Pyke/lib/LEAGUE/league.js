@@ -14,8 +14,8 @@ module.exports = class League{
      */
 
     async getChallengerLeague (regionId, queue){
-        return new Promise (async (resolve, reject) =>{
-            await got.get(`https://${regionId + api_url + endpoints.league.challengerleagues + queue + '?api_key=' + this.api_key}`, {
+        return new Promise ((resolve, reject) =>{
+            got.get(`https://${regionId + api_url + endpoints.league.challengerleagues + queue + '?api_key=' + this.api_key}`, {
                 json: true
             })
             .then(data =>{
@@ -35,8 +35,8 @@ module.exports = class League{
      * @param {String} leagueId 
      */
     async getLeagueById (regionId, leagueId){
-        return new Promise(async (resolve, reject) =>{
-            await got.get(`https://${regionId + api_url + endpoints.league.leagues + leagueId + '?api_key=' + this.api_key}`, {
+        return new Promise((resolve, reject) =>{
+            got.get(`https://${regionId + api_url + endpoints.league.leagues + leagueId + '?api_key=' + this.api_key}`, {
                 json: true
             })
             .then(data => {
@@ -57,8 +57,8 @@ module.exports = class League{
      * @param {String} queue RANKED_SOLO_5x5 / RANKED_FLEX_SR / RANKED_FLEX_TT
      */
     async getMasterLeague (regionId, queue) {
-        return new Promise (async (resolve, reject) =>{
-            await got.get(`https://${regionId + api_url + endpoints.league.masterleagues + queue + '?api_key=' + this.api_key}`, {
+        return new Promise ((resolve, reject) =>{
+            got.get(`https://${regionId + api_url + endpoints.league.masterleagues + queue + '?api_key=' + this.api_key}`, {
                 json: true
             })
             .then(data =>{
@@ -80,8 +80,8 @@ module.exports = class League{
      * @returns {Promise<{all: JSON, RANKED_SOLO_5x5: JSON, RANKED_FLEX_SR: JSON, RANKED_FLEX_TT: JSON}>}
      */
     async getAllLeaguePositionsForSummoner(summonerId, regionId) {
-        return new Promise(async (resolve, reject) => {
-            await got.get(`https://${regionId + api_url + endpoints.league.bysummonerId + summonerId + '?api_key=' + this.api_key}`, {
+        return new Promise((resolve, reject) => {
+            got.get(`https://${regionId + api_url + endpoints.league.bysummonerId + summonerId + '?api_key=' + this.api_key}`, {
                 json: true
             }).then(data => {
                 var arr = new Array(data.body.length);
