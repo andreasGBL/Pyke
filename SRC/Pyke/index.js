@@ -11,6 +11,7 @@ const lib_ddragon = require('./lib_ddragon/lol-static-data');
 class Pyke {
     constructor(api_key) {
         this.api_key = api_key; // Your API_KEY https://developer.riotgames.com/
+        this.lastversion = "";
         this.summoner = new summonerv4(this.api_key); // Summoner V3
         this.masteries = new championmasteriesv4(this.api_key); // Masteries v3
         this.champion = new championv4(this.api_key); // champion
