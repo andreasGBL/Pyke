@@ -13,8 +13,8 @@ module.exports = class Summoner {
      * @returns {Promise<{id: String, accountId: String, summonerLevel: String, profileIconId: String, profileIconUrl: String, name: String}>}
      */
     async getBySummonerName(summonerName, regionId) {
-        return new Promise(async (resolve, reject) => {
-            await got.get(`https://${regionId + api_url + endpoints.summoner.summonerName + encodeURIComponent(summonerName)}`, {
+        return new Promise((resolve, reject) => {
+            got.get(`https://${regionId + api_url + endpoints.summoner.summonerName + encodeURIComponent(summonerName)}`, {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
@@ -46,7 +46,7 @@ module.exports = class Summoner {
      */
     async getBySummonerId(summonerId, regionId) {
         return new Promise(async (resolve, reject) => {
-            await got.get(`https://${regionId + api_url + endpoints.summoner.summonerId + summonerId}`, {
+            got.get(`https://${regionId + api_url + endpoints.summoner.summonerId + summonerId}`, {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
@@ -72,8 +72,8 @@ module.exports = class Summoner {
     }
     
     async getByPUUID(puuid, regionId) {
-        return new Promise(async (resolve, reject) => {
-            await got.get(`https://${regionId + api_url + endpoints.summoner.puuid + puuid}`,  {
+        return new Promise((resolve, reject) => {
+            got.get(`https://${regionId + api_url + endpoints.summoner.puuid + puuid}`,  {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
