@@ -13,8 +13,8 @@ module.exports = class status {
      * 
      */
     async getMatch (matchId, regionId) {
-        return new Promise(async (resolve, reject) => {
-            await got.get(`https://${regionId + api_url + endpoints.match.matches + matchId}`, {
+        return new Promise((resolve, reject) => {
+            got.get(`https://${regionId + api_url + endpoints.match.matches + matchId}`, {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
@@ -48,8 +48,8 @@ module.exports = class status {
             queue: '', 
             season: ''
         }
-        return new Promise (async (resolve, reject) =>{
-            await got.get(`https://${regionId + api_url + endpoints.match.matchlists + accountId }`, {
+        return new Promise ((resolve, reject) =>{
+             got.get(`https://${regionId + api_url + endpoints.match.matchlists + accountId }`, {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
@@ -82,8 +82,8 @@ module.exports = class status {
      */
     async getMatchlistRecent (accountId, regionId) {
         console.warn('Recent is not an Endpoints official but I is created by endIndex, next time used getMatchlist()');
-        return new Promise (async (resolve, reject) =>{
-            await got.get(`https://${regionId + api_url + endpoints.match.matchlists + accountId }`, {
+        return new Promise ((resolve, reject) =>{
+            got.get(`https://${regionId + api_url + endpoints.match.matchlists + accountId }`, {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
@@ -111,8 +111,8 @@ module.exports = class status {
      * @returns {Promise<{frameInterval: String, frames: Array}>}
      */
     async getMatchTimeline (regionId, matchId) {
-        return new Promise (async (resolve, reject) =>{
-            await got.get(`https://${regionId + api_url + endpoints.match.timelines + matchId}`,{
+        return new Promise ((resolve, reject) =>{
+             got.get(`https://${regionId + api_url + endpoints.match.timelines + matchId}`,{
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
@@ -140,20 +140,22 @@ module.exports = class status {
      * @returns {Promise<{}>}
      */
     async getMatchIdsByTournamentCode (regionId, tournamentCode) {
-        await got.get(`https://${regionId + api_url + endpoints.match.tournament + tournamentCode + '/ids'}`,{
+        return new Promise((resolve, reject) =>{
+            got.get(`https://${regionId + api_url + endpoints.match.tournament + tournamentCode + '/ids'}`,{
             headers:{
                 "X-Riot-Token": this.api_key
             },
             json: true
-        })
-        .then(data =>{
-            resolve(data.body)
-        })
-        .catch(error => {
-            reject({
-                statuscode: error.statusCode,
-                message: error.statusMessage
-            });
+            })
+            .then(data =>{
+                resolve(data.body)
+            })
+            .catch(error => {
+                reject({
+                    statuscode: error.statusCode,
+                    message: error.statusMessage
+                });
+            })
         })
     }
     /**
@@ -164,7 +166,8 @@ module.exports = class status {
      * @returns {Promise<{}>}
      */
     async getMatchByTournamentCode (regionId, matchId, tournamentCode) {
-        await got.get(`https://${regionId + api_url + endpoints.match.tournament + matchId + endpoints.match.matchid_tournament + tournamentCode}`,{
+        return new Promise((resolve, reject) =>{
+          got.get(`https://${regionId + api_url + endpoints.match.tournament + matchId + endpoints.match.matchid_tournament + tournamentCode}`,{
             headers:{
                 "X-Riot-Token": this.api_key
             },
@@ -178,6 +181,7 @@ module.exports = class status {
                 statuscode: error.statusCode,
                 message: error.statusMessage
             });
+        })  
         })
     }
 }
