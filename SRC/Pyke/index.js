@@ -15,7 +15,7 @@ class Pyke {
              got.get("https://raw.githubusercontent.com/systeme-cardinal/Pyke/master/SRC/Pyke/version.json", { json: true })
                 .then(resp =>{
                   if (!resp.body) return console.log("Error to listen reposit github");
-                  if (package.version === resp.body.latest) return console.log("Pyke is up to date");
+                  if (package.version === resp.body.latest) return console.log("Pyke has last version");
                   if (package.version === resp.body.beta) return console.log("Warning : You used of beta version");
                   return console.log(`Your version ${package.version} is out dated, latest version is ${resp.body.latest} and beta github is ${resp.body.beta}`);
                 })
