@@ -11,7 +11,7 @@ const lib_ddragon = require('./lib_ddragon/lol-static-data');
 class Pyke {
     constructor(api_key) {
         this.api_key = api_key; // Your API_KEY https://developer.riotgames.com/
-        this.lastversion = (function() => {
+        this.lastversion = (() => {
              got.get("https://raw.githubusercontent.com/systeme-cardinal/Pyke/master/SRC/Pyke/version.json", { json: true })
                 .then(resp =>{
                   if (!resp.body) return console.log("Error to listen reposit github");
