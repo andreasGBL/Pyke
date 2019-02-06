@@ -7,6 +7,8 @@ const spectatorv4 = require('./lib/SPECTATOR/spectator');
 const apistatusv3 = require('./APIStatusAPI/index.js');
 var mypackage = require("../../package.json");
 const lib_ddragon = require('./lib_ddragon/lol-static-data');
+var got = require('got');
+
 //Riot API
 class Pyke {
     constructor(api_key) {
