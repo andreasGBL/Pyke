@@ -5,7 +5,7 @@ const leaguev4 = require('./lib/LEAGUE/league');
 const matchv4 = require('./lib/MATCH/match');
 const spectatorv4 = require('./lib/SPECTATOR/spectator');
 const apistatusv3 = require('./APIStatusAPI/index.js');
-var package = require("../../package.json");
+var mypackage = require("../../package.json");
 const lib_ddragon = require('./lib_ddragon/lol-static-data');
 //Riot API
 class Pyke {
@@ -15,9 +15,9 @@ class Pyke {
              got.get("https://raw.githubusercontent.com/systeme-cardinal/Pyke/master/SRC/Pyke/version.json", { json: true })
                 .then(resp =>{
                   if (!resp.body) return console.log("Error to listen reposit github");
-                  if (package.version === resp.body.latest) return console.log("Pyke has last version");
-                  if (package.version === resp.body.beta) return console.log("Warning : You used of beta version");
-                  return console.log(`Your version ${package.version} is out dated, latest version is ${resp.body.latest} and beta github is ${resp.body.beta}`);
+                  if (mypackage.version === resp.body.latest) return console.log("Pyke has last version");
+                  if (mypackage.version === resp.body.beta) return console.log("Warning : You used of beta version");
+                  return console.log(`Your version ${mypackage.version} is out dated, latest version is ${resp.body.latest} and beta github is ${resp.body.beta}`);
                 })
                 .catch(err => console.log("Impossible of verified if Pyke is up to date"))
                            })();
