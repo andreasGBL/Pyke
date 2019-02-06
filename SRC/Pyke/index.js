@@ -5,13 +5,22 @@ const leaguev4 = require('./lib/LEAGUE/league');
 const matchv4 = require('./lib/MATCH/match');
 const spectatorv4 = require('./lib/SPECTATOR/spectator');
 const apistatusv3 = require('./APIStatusAPI/index.js');
-
+var package = require("../../package.json");
 const lib_ddragon = require('./lib_ddragon/lol-static-data');
 //Riot API
 class Pyke {
     constructor(api_key) {
         this.api_key = api_key; // Your API_KEY https://developer.riotgames.com/
-        this.lastversion = "";
+        this.lastversion = (function() => {
+             got.get("https://raw.githubusercontent.com/systeme-cardinal/Pyke/master/SRC/Pyke/version.json", { json: true })
+                .then(resp =>{
+                  if (!resp.body) return console.log("Error to listen reposit github");
+                  if (package.version === resp.body.latest) return console.log("Pyke is up to date");
+                  if (package.version === resp.body.beta) return console.log("Warning : You used of beta version");
+                  return console.log(`Your version ${package.version} is out dated, latest version is ${resp.body.latest} and beta github is ${resp.body.beta}`);
+                })
+                .catch(err => console.log("Impossible of verified if Pyke is up to date"))
+                           })();
         this.summoner = new summonerv4(this.api_key); // Summoner V3
         this.masteries = new championmasteriesv4(this.api_key); // Masteries v3
         this.champion = new championv4(this.api_key); // champion
