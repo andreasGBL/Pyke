@@ -1,8 +1,8 @@
 var summoner_spell = {};
 var i, y, nom;
 
-async function data_summoner_spell_id(summoner_spell_json) {
-    return new Promise(async (resolve, reject) =>{
+function data_summoner_spell_id(summoner_spell_json) {
+    return new Promise((resolve, reject) =>{
         try {
             var keys = Object.keys(summoner_spell_json.data);
             for (i = 0; i < keys.length; i++) {
