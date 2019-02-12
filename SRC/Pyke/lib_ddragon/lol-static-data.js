@@ -8,8 +8,8 @@ module.exports = class Download {
     };
 
     async getVersions() {
-        return new Promise(async (resolve, reject) => {
-            await got.get(`https://ddragon.leagueoflegends.com/api/versions.json`, { json: true })
+        return new Promise((resolve, reject) => {
+            got.get(`https://ddragon.leagueoflegends.com/api/versions.json`, { json: true })
                 .then(data => {
                     resolve(data.body);
                 })
@@ -24,8 +24,8 @@ module.exports = class Download {
     async getChampionList(opts) {
         var locale = opts.locale || "fr_FR";
         var version = opts.version || (await this.getVersions())[0];
-        return new Promise(async (resolve, reject) =>{
-            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/championFull.json`, {
+        return new Promise((resolve, reject) =>{
+            got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/championFull.json`, {
                 json: true
             }).catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) })
             .then(data =>{
@@ -64,8 +64,8 @@ module.exports = class Download {
     async getItemList(opts) {
         var locale = opts.locale || 'fr_FR';
         var version = opts.version || (await this.getVersions())[0];
-        return new Promise(async (resolve, reject) =>{
-            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/item.json`, {json: true})
+        return new Promise((resolve, reject) =>{
+            got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/item.json`, {json: true})
                 .then(data =>{
                     var response = data.body;
                     resolve(response);
@@ -101,8 +101,8 @@ module.exports = class Download {
     async getLanguageStrings(opts) {
         var locale = opts.locale || 'fr_FR';
         var version = opts.version || (await this.getVersions())[0];
-        return new Promise(async (resolve, reject) =>{
-            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/language.json`, {json: true})
+        return new Promise((resolve, reject) =>{
+            got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/language.json`, {json: true})
                 .then(data =>{
                     var response = data.body;
                     resolve(response);
@@ -111,8 +111,8 @@ module.exports = class Download {
     };
 
     async getLanguages() {
-        return new Promise(async (resolve, reject) => {
-            await got.get(`https://ddragon.leagueoflegends.com/cdn/languages.json`, { json: true })
+        return new Promise((resolve, reject) => {
+            got.get(`https://ddragon.leagueoflegends.com/cdn/languages.json`, { json: true })
                 .then(data => {
                     resolve(data.body);
                 })
@@ -129,8 +129,8 @@ module.exports = class Download {
     async getMapData(opts) {
         var locale = opts.locale || 'fr_FR';
         var version = opts.version || (await this.getVersions())[0];
-        return new Promise(async (resolve, reject) =>{
-            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/map.json`, {json: true})
+        return new Promise((resolve, reject) =>{
+            got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/map.json`, {json: true})
                 .then(data =>{
                     var response = data.body;
                     resolve(response);
@@ -154,8 +154,8 @@ module.exports = class Download {
     async getProfileIcons(opts) {
         var locale = opts.locale || 'fr_FR';
         var version = opts.version || (await this.getVersions())[0];
-        return new Promise(async (resolve, reject) =>{
-            await got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/profileicon.json`, {json: true})
+        return new Promise((resolve, reject) =>{
+            got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/profileicon.json`, {json: true})
                 .then(data =>{
                     var response = data.body;
                     resolve(response);
