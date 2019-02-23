@@ -11,13 +11,13 @@
   <a href="https://www.npmjs.com/package/pyke" rel="nofollow"><img src="https://nodei.co/npm/pyke.png" alt="NPM Pyke"></a>
 </div>
 
-## npm
+## npm (3.1.0)
 
 ```sh
   npm i --save pyke
 ```
 
-## npm github (beta)
+## npm github (beta) (3.1.1)
  
 ```sh
   npm i --save github:systeme-cardinal/Pyke
@@ -34,7 +34,7 @@ You can help me for create a Wiki of Pyke :)
 Pyke used [RIOT API](https://developer.riotgames.com/) and Static Dragon actualy [DDragon](https://ddragon.leagueoflegends.com/tools)
 
 ## Version
-Version 3.1.1 => Currently Update <br />
+Version 3.1.1 => Add Typing <br />
 Version 3.1.0 => Update folder name <br />
 Version 3.0.0 => Update to V4 of RiotGamesAPI<br />
 Version 2.0.0 => Update got and add code <br />
