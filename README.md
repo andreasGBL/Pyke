@@ -25,7 +25,7 @@
 
 ## Installation and Usage
 
-Pyke minimum required Node.JS version 7.6 for native asynchrone.
+Pyke minimum required Node.JS version >=8.6 for native asynchrone and dependencies.
 You can help me for create a Wiki of Pyke :) 
 
 
