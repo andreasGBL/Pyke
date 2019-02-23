@@ -8,8 +8,8 @@
     "test": "node ./Exemple/Exemple-ddragon.js"
   },
   "engines": {
-		"node": ">=8.6"
-	}
+     "node": ">=8.6"
+  },
   "repository": "https://github.com/systeme-cardinal/node-Pyke.git",
   "author": "DoctaEnkoda <bierquejason@gmail.com>",
   "license": "GPL-3.0",
