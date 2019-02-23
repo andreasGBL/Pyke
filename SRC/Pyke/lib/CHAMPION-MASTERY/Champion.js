@@ -42,7 +42,7 @@ module.exports = class Champion {
                 statuscode: "403",
                 message: "Forbidden"
             });
-            await got.get(`https://${regionId + api_url + endpoints.champion_mastery.masteryById + summonerId + endpoints.champion_mastery.masteryByIdByChampionId + championId +  '?api_key=' + this.api_key}`, { json: true })
+            got.get(`https://${regionId + api_url + endpoints.champion_mastery.masteryById + summonerId + endpoints.champion_mastery.masteryByIdByChampionId + championId +  '?api_key=' + this.api_key}`, { json: true })
                 .then(data => {
                     var body = data.body;
                     resolve({
