@@ -49,7 +49,7 @@ Version 1.0.4 => Create reposit Pyke <br />
 
 #### Example
 ```javascript
-const {DDragon, Pyke} = require('../main');
+const {DDragon, Pyke} = require('pyke');
 
 const pyke = new Pyke(`Here my API KEY `);
 pyke.summoner.getBySummonerName("DoctaEnkoda", "euw").then(data => {
