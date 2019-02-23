@@ -1,17 +1,42 @@
 declare module 'pyke' {
     export class Pyke {
         constructor(api_key: String);
-        public summoner : {
-            getBySummonerName(summonerName: String, regionId: regionId): Promise<SummonerInfo>,  
+        public summoner: {
+            getBySummonerName(summonerName: String, regionId: regionId): Promise<SummonerInfo>,
             getBySummonerId(summonerId: String, regionId: regionId): Promise<SummonerInfo>
             getByPUUID(puuid: String, regionId: regionId): Promise<SummonerInfo>,
             getByAccountId(accountId: String, regionId: regionId): Promise<SummonerInfo>,
         }
+        public masteries :{
+            getAllChampionMasteries(summonerId: String, regionId: regionId): Promise<Object>,
+            getChampionMastery(summonerId: String, regionId: regionId, championId: Number): Promise<Object>,
+            getChampionMasteryScore(summonerId: String, regionId: regionId)
+        }
+        public champion: {
+            getChampions(regionId: regionId, freeToPlay: Boolean): Promise<Object>,
+            getChampionsById(regionId: regionId, championId: Number): Promise<Object>,
+
+        }
         public league: {
-            getChallengerLeague(regionId: regionId, queue: QUEUE): Promise<>,
-            getMasterLeague(regionId: regionId, queue: QUEUE): Promise<>,
-            getLeagueById(regionId: regionId, leagueId: String): Promise<>,
+            getChallengerLeague(regionId: regionId, queue: QUEUE): Promise<Object>,
+            getMasterLeague(regionId: regionId, queue: QUEUE): Promise<Object>,
+            getLeagueById(regionId: regionId, leagueId: String): Promise<Object>,
             getAllLeaguePositionsForSummoner(summonerId: String, regionId: regionId): Promise<PositionId>
+        }
+        public match: {
+            getMatch(matchId: Number, regionId: regionId): Promise<Object>,
+            getMatchlist(accountId: String, regionId: regionId, opts: opts_match): Promise<Object>,
+            getMatchlistRecent(accountId: String, regionId: regionId): Promise<Object>,
+            getMatchTimeline(regionId: regionId, matchId: String): Promise<Object>,
+            getMatchIdsByTournamentCode(regionId: regionId, tournamentCode: String): Promise<Object>,
+            getMatchByTournamentCode(regionId: regionId, matchId: Number, tournamentCode: String): Promise<Object>
+        }
+        public spectator:{
+            getCurrentGameInfoBySummoner(summonerId: String, regionId: regionId):Promise<Object>,
+            getFeaturedGames(regionId: regionId): Promise<Object>
+        }
+        public status:{
+            getShardData(regionId: regionId): Promise<shardata>
         }
     }
 
@@ -22,11 +47,11 @@ declare module 'pyke' {
 
     // Summoner
     type SummonerInfo = {
-        id: String, 
-        accountId: String, 
-        summonerLevel: Number, 
-        profileIconId: String, 
-        profileIconUrl: String, 
+        id: String,
+        accountId: String,
+        summonerLevel: Number,
+        profileIconId: String,
+        profileIconUrl: String,
         name: String,
         puuid: String
     };
@@ -134,4 +159,10 @@ declare module 'pyke' {
         }
     }
 
+    // Match 
+
+    type opts_match= {endTime: String, beginIndex: String, beginTime: String, champion: String, endIndex: String, queue: String, season: String};
+
+    // status
+    type shardata = {name: String, region_tag: String, hostname: String, services: Array<Object>, slug: String, locales: Array<Object>}
 }
