@@ -6,7 +6,7 @@
   <a href="https://ci.appveyor.com/project/systeme-cardinal/pyke/branch/master" rel="nofollow"><img src="https://ci.appveyor.com/api/projects/status/github/systeme-cardinal/pyke?branch=master&svg=true" alt="Build status: Windows" data-canonical-src="https://ci.appveyor.com/api/projects/status/github/systeme-cardinal/pyke?branch=master&svg=true" style="max-width:100%;"></a>
   <a href="https://www.npmjs.com/package/pyke" rel="nofollow"><img src="https://img.shields.io/npm/dt/pyke.svg?maxAge=3600" alt="NPM downloads"></a>
   <a href="https://www.npmjs.com/package/pyke" rel="nofollow"><img src="https://img.shields.io/npm/v/pyke.svg?maxAge=3600" alt="NPM version"></a>
-  [![install size](https://packagephobia.now.sh/badge?p=pyke)](https://packagephobia.now.sh/result?p=pyke)
+  <a href="https://packagephobia.now.sh/result?p=pyke" rel="nofollow"><img src="https://badgen.now.sh/badge/install%20size/429%20kB/00CED1" alt="packagephobia"></a>
 </div>
 <div align="center">
   <a href="https://www.npmjs.com/package/pyke" rel="nofollow"><img src="https://nodei.co/npm/pyke.png" alt="NPM Pyke"></a>
