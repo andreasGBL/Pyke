@@ -53,7 +53,7 @@ Version 1.0.4 => Create reposit Pyke <br />
 const {DDragon, Pyke} = require('pyke');
 
 const pyke = new Pyke(`Here my API KEY `);
-pyke.summoner.getBySummonerName("DoctaEnkoda", "euw").then(data => {
+pyke.summoner.getBySummonerName("DoctaEnkoda", "euw1").then(data => {
   console.log(`Summoner Name is : ${data.name}, and level is : ${data.summonerLevel}`);
 }).catch(console.error);
 ```
