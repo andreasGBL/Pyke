@@ -14,7 +14,8 @@
   "author": "DoctaEnkoda <bierquejason@gmail.com>",
   "license": "GPL-3.0",
   "dependencies": {
-    "got": "^9.6.0"
+    "got": "^9.6.0",
+    "lru-cache": "^5.1.1"
   },
   "keywords": [
     "riot",
