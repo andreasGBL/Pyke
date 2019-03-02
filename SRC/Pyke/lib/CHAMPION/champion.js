@@ -4,8 +4,9 @@ var api_url = ".api.riotgames.com";
 // Coverage 100%
 
 module.exports = class champion {
-    constructor(api_key){
+    constructor(api_key, LRU){
         this.api_key = api_key;
+        this.LRU = this.LRU;
     }
     /**
      * 
@@ -16,7 +17,7 @@ module.exports = class champion {
     async getChampions(regionId, freeToPlay){
         return new Promise((resolve, reject) =>{
             if (freeToPlay !== true) freeToPlay = false;
-            got.get(`https://${regionId + api_url + endpoints.champion.championList + '?freeToPlay=' + freeToPlay + '&api_key=' + this.api_key}`, {json :true})
+            got.get(`https://${regionId + api_url + endpoints.champion.championList + '?freeToPlay=' + freeToPlay + '&api_key=' + this.api_key}`, {json :true, cache: this.LRU })
                 .then(data =>{
                     resolve(data.body);
                 })
@@ -41,7 +42,7 @@ module.exports = class champion {
                 message: "Forbidden"
             });
 
-            got.get(`https://${regionId + api_url + endpoints.champion.championById + championId + '?api_key=' + this.api_key}`,{json : true})
+            got.get(`https://${regionId + api_url + endpoints.champion.championById + championId + '?api_key=' + this.api_key}`,{json : true, cache: this.LRU })
                 .then(data =>{
                     var body = data.body;
                     resolve({
