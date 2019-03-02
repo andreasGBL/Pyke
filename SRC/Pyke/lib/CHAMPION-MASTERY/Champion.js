@@ -7,7 +7,7 @@ var api_url = ".api.riotgames.com";
 module.exports = class Champion {
     constructor(api_key, LRU) {
         this.api_key = api_key;
-        this.LRU = LRU/
+        this.LRU = LRU;
     }
     /**
      * 
