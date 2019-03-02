@@ -36,7 +36,7 @@ You can help me for create a Wiki of Pyke :)
 Pyke used [RIOT API](https://developer.riotgames.com/) and Static Dragon actualy [DDragon](https://ddragon.leagueoflegends.com/tools)
 
 ## Version
-Version 3.1.1 => Add Typing <br />
+Version 3.1.1 => Add Typing and add LRU-CACHE for caching RiotGamesAPI<br />
 Version 3.1.0 => Update folder name <br />
 Version 3.0.0 => Update to V4 of RiotGamesAPI<br />
 Version 2.0.0 => Update got and add code <br />
