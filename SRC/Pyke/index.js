@@ -5,14 +5,22 @@ const leaguev4 = require('./lib/LEAGUE/league');
 const matchv4 = require('./lib/MATCH/match');
 const spectatorv4 = require('./lib/SPECTATOR/spectator');
 const apistatusv3 = require('./APIStatusAPI/index.js');
-var mypackage = require("../../package.json");
+const mypackage = require("../../package.json");
 const lib_ddragon = require('./lib_ddragon/lol-static-data');
-var got = require('got');
+const got = require('got');
+const LRU = require("lru-cache");
 
 //Riot API
 class Pyke {
-    constructor(api_key) {
+    constructor(api_key, cache) {
         this.api_key = api_key; // Your API_KEY https://developer.riotgames.com/
+        this.option_cache = new LRU({
+            max: 500, 
+            length: function (n, key) { 
+                return n * 2 + key.length 
+            },  
+            maxAge: cache 
+        }); // Your Cache to seconds
         this.lastversion = (() => {
              got.get("https://raw.githubusercontent.com/systeme-cardinal/Pyke/master/SRC/Pyke/version.json", { json: true })
                 .then(resp =>{
@@ -22,14 +30,13 @@ class Pyke {
                   return console.log(`Your version ${mypackage.version} is out dated, latest version is ${resp.body.latest} and beta github is ${resp.body.beta}`);
                 })
                 .catch(err => console.log("Impossible of verified if Pyke is up to date"))
-                           })();
-        this.summoner = new summonerv4(this.api_key); // Summoner V3
-        this.masteries = new championmasteriesv4(this.api_key); // Masteries v3
-        this.champion = new championv4(this.api_key); // champion
-        this.league = new leaguev4(this.api_key); // League
-        this.match = new matchv4(this.api_key); // Match
-        this.spectator = new spectatorv4(this.api_key); // Ingame      
-        //this.lol_static_data = console.log('The lol-static-data-v3 API is now deprecated and will be removed on Monday, August 27th, 2018. Please use Data Dragon as a replacement.');
+        })();
+        this.summoner = new summonerv4(this.api_key, this.option_cache); // Summoner V3
+        this.masteries = new championmasteriesv4(this.api_key, this.option_cache); // Masteries v3
+        this.champion = new championv4(this.api_key, this.option_cache); // champion
+        this.league = new leaguev4(this.api_key, this.option_cache); // League
+        this.match = new matchv4(this.api_key, this.option_cache); // Match
+        this.spectator = new spectatorv4(this.api_key, this.option_cache); // Ingame      
         this.discord = {
              "RiotAPI":'`https://discord.gg/riotapi',
             "support_lib": "https://discord.gg/QgUnuk8"
