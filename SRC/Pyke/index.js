@@ -36,7 +36,7 @@ class Pyke {
         this.champion = new championv4(this.api_key, this.option_cache); // champion
         this.league = new leaguev4(this.api_key, this.option_cache); // League
         this.match = new matchv4(this.api_key, this.option_cache); // Match
-        this.spectator = new spectatorv4(this.api_key, this.option_cache); // Ingame      
+        this.spectator = new spectatorv4(this.api_key); // Ingame      
         this.discord = {
              "RiotAPI":'`https://discord.gg/riotapi',
             "support_lib": "https://discord.gg/QgUnuk8"
