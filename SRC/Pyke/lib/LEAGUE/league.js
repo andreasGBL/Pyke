@@ -3,8 +3,9 @@ const got = require('got');
 var api_url = ".api.riotgames.com";
 
 module.exports = class League{
-    constructor(api_key) {
+    constructor(api_key, LRU) {
         this.api_key = api_key;
+        this.LRU = LRU;
     }
 
     /**
@@ -16,7 +17,7 @@ module.exports = class League{
     async getChallengerLeague (regionId, queue){
         return new Promise ((resolve, reject) =>{
             got.get(`https://${regionId + api_url + endpoints.league.challengerleagues + queue + '?api_key=' + this.api_key}`, {
-                json: true
+                json: true, cache: this.LRU 
             })
             .then(data =>{
                 resolve(data.body);
@@ -59,7 +60,7 @@ module.exports = class League{
     async getMasterLeague (regionId, queue) {
         return new Promise ((resolve, reject) =>{
             got.get(`https://${regionId + api_url + endpoints.league.masterleagues + queue + '?api_key=' + this.api_key}`, {
-                json: true
+                json: true, cache: this.LRU 
             })
             .then(data =>{
                 resolve(data.body);
