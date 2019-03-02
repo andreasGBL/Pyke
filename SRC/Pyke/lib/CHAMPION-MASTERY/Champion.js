@@ -5,8 +5,9 @@ var api_url = ".api.riotgames.com";
     Coverage 100%
  */
 module.exports = class Champion {
-    constructor(api_key) {
+    constructor(api_key, LRU) {
         this.api_key = api_key;
+        this.LRU = LRU/
     }
     /**
      * 
@@ -17,7 +18,10 @@ module.exports = class Champion {
 
     async getAllChampionMasteries(summonerId, regionId) {
         return new Promise((resolve, reject) => {
-            got.get(`https://${regionId + api_url + endpoints.champion_mastery.masteryById + summonerId}?api_key=${this.api_key}`, { json: true })
+            got.get(`https://${regionId + api_url + endpoints.champion_mastery.masteryById + summonerId}?api_key=${this.api_key}`, { 
+                json: true,
+                cache: this.LRU
+            })
                 .then(data => {
                     resolve(data.body);
                 })
@@ -42,7 +46,7 @@ module.exports = class Champion {
                 statuscode: "403",
                 message: "Forbidden"
             });
-            got.get(`https://${regionId + api_url + endpoints.champion_mastery.masteryById + summonerId + endpoints.champion_mastery.masteryByIdByChampionId + championId +  '?api_key=' + this.api_key}`, { json: true })
+            got.get(`https://${regionId + api_url + endpoints.champion_mastery.masteryById + summonerId + endpoints.champion_mastery.masteryByIdByChampionId + championId +  '?api_key=' + this.api_key}`, { json: true, cache: this.LRU })
                 .then(data => {
                     var body = data.body;
                     resolve({
