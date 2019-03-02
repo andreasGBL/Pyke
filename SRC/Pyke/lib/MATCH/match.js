@@ -3,8 +3,9 @@ const got = require('got');
 var api_url = ".api.riotgames.com";
 
 module.exports = class status {
-    constructor(api_key){
+    constructor(api_key, LRU){
         this.api_key = api_key;
+        this.LRU = LRU;
     }
     /**
      * 
@@ -18,7 +19,8 @@ module.exports = class status {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
-                json: true
+                json: true,
+                cache: this.LRU
             })
             .then(data =>{
                 var body = data.body;
@@ -54,6 +56,7 @@ module.exports = class status {
                     "X-Riot-Token": this.api_key
                 },
                 json: true,
+                cache: this.LRU,
                 query:{
                     endTime: opts.endTime,
                     beginIndex: opts.beginIndex,
@@ -88,6 +91,7 @@ module.exports = class status {
                     "X-Riot-Token": this.api_key
                 },
                 json: true,
+                cache: this.LRU,
                 query:{
                     endIndex: 20
                 }
@@ -116,7 +120,8 @@ module.exports = class status {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
-                json: true
+                json: true,
+                cache: this.LRU
             })
             .then(data =>{
                 var body = data.body;
@@ -145,7 +150,8 @@ module.exports = class status {
             headers:{
                 "X-Riot-Token": this.api_key
             },
-            json: true
+            json: true,
+            cache: this.LRU
             })
             .then(data =>{
                 resolve(data.body)
@@ -171,7 +177,8 @@ module.exports = class status {
             headers:{
                 "X-Riot-Token": this.api_key
             },
-            json: true
+            json: true,
+            cache: this.LRU
         })
         .then(data =>{
             resolve(data.body)
