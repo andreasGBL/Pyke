@@ -83,7 +83,7 @@ module.exports = class League{
     async getAllLeaguePositionsForSummoner(summonerId, regionId) {
         return new Promise((resolve, reject) => {
             got.get(`https://${regionId + api_url + endpoints.league.bysummonerId + summonerId + '?api_key=' + this.api_key}`, {
-                json: true
+                json: true, cache: this.LRU 
             }).then(data => {
                 var arr = new Array(data.body.length);
                 arr = data.body;
