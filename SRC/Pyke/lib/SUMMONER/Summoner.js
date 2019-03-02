@@ -3,8 +3,9 @@ const got = require('got');
 var api_url = ".api.riotgames.com";
     //coverage 100%
 module.exports = class Summoner {
-    constructor(api_key){
+    constructor(api_key, LRU){
         this.api_key = api_key;
+        this.LRU = LRU;
     }
     /**
      * 
@@ -19,6 +20,7 @@ module.exports = class Summoner {
                     "X-Riot-Token": this.api_key
                 },
                json: true,
+                cache: this.LRU
             }).then(data => {
                 var body = data.body;
                 resolve({
@@ -51,6 +53,7 @@ module.exports = class Summoner {
                     "X-Riot-Token": this.api_key
                 },
                json: true,
+                cache: this.LRU
             }).then(data => {
                 var body = data.body;
                 resolve({
@@ -78,6 +81,8 @@ module.exports = class Summoner {
                     "X-Riot-Token": this.api_key
                 },
                json: true,
+                cache: this.LRU
+                
             }).then(data => {
                 var body = data.body;
                 resolve({
@@ -110,6 +115,7 @@ module.exports = class Summoner {
                     "X-Riot-Token": this.api_key
                 },
                json: true,
+               cache: this.LRU
             }).then(data => {
                 var body = data.body;
                 resolve({
