@@ -6,7 +6,7 @@ client.login('your token').then( () =>{
 }).catch(console.error);
 
 const {Pyke} = require('pyke');
-const  pyke_api = new Pyke('your api key');
+const  pyke_api = new Pyke('your api key', 10000);// (10 seconds maxAge)
 
 client.on('message', async message =>{
   if (message.content.startsWith('!lol test')){
