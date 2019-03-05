@@ -63,6 +63,15 @@ class CommunityDragon {
     }
 }
 
+class onetricks_net {
+    constructor() {
+        this.warning = console.log("Warning, I am not the owner of the site, API can changed or disabled!");
+        this.reposit = "https://github.com/cnguy/onetricks.net";
+        this.website = "http://onetricks.net";
+        
+    }
+}
+
 
 // Exportation
 module.exports = {
@@ -72,5 +81,6 @@ module.exports = {
     statusCode: require('./statusCode.js'),
     game_constants: require('./GAMECONSTANTS.js'),
     CommunityDragon: CommunityDragon,
-    MasteryPoints: new (require('./MasteryPoints/index'))
+    MasteryPoints: new (require('./MasteryPoints/index')),
+    onetricks: onetricks_net
 }
