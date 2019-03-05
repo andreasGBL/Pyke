@@ -19,7 +19,7 @@ class Pyke {
             length: function (n, key) { 
                 return n * 2 + key.length 
             },  
-            maxAge: cache 
+            maxAge: cache || 1000
         }); // Your Cache to seconds
         this.lastversion = (() => {
              got.get("https://raw.githubusercontent.com/systeme-cardinal/Pyke/master/SRC/Pyke/version.json", { json: true })
