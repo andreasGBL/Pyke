@@ -1,6 +1,5 @@
 # Pyke for API RiotGames
 <div align="center">
-  <a href="https://discord.gg/QgUnuk8"><img src="https://discordapp.com/api/guilds/542293524004077568/embed.png" alt="Discord server" /></a>
   <a href="https://npmjs.org/package/pyke" ><img src="https://img.shields.io/badge/Written%20in-Node%20JS-00CED1.svg" alt="NodeJs"</a>
   <a href="https://david-dm.org/systeme-cardinal/node-Pyke"><img src="https://david-dm.org/systeme-cardinal/node-Pyke/status.svg" alt="Dependencies" /></a>
   <a href="https://travis-ci.org/systeme-cardinal/Pyke"><img src="https://travis-ci.org/systeme-cardinal/Pyke.svg?branch=master" alt="Build" /></a>
