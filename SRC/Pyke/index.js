@@ -8,6 +8,7 @@ const apistatusv3 = require('./APIStatusAPI/index.js');
 const mypackage = require("../../package.json");
 const lib_ddragon = require('./lib_ddragon/lol-static-data');
 const got = require('got');
+const thirdpartycode = require('./lib/third-party-code/thirdpartycode');
 const LRU = require("lru-cache");
 
 //Riot API
@@ -42,6 +43,7 @@ class Pyke {
             "support_lib": "https://discord.gg/QgUnuk8"
         }
         this.status = new apistatusv3(); //API Status V3
+        this.thirdpartycode = new thirdpartycode(this.api_key);
     }; 
 }
 
