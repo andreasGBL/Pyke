@@ -40,5 +40,9 @@ module.exports = {
     spectator: {
         activegames: '/lol/spectator/v4/active-games/by-summoner/',
         feactured: '/lol/spectator/v4/featured-games'
+    },
+    //platform
+    platform: {
+        thirdpartycode: '/lol/platform/v4/third-party-code/by-summoner/'
     }
 }
