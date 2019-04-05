@@ -13,16 +13,19 @@ module.exports = class status {
      */
     getThirdPartyCodeBySummonerId (summonerId, regionId) {
         return new Promise((resolve, reject) => {
-            got.head(`https://${regionId + api_url + endpoints.platform.thirdpartycode + summonerId }`, {
+            got.get(`https://${regionId + api_url + endpoints.platform.thirdpartycode + summonerId}`, {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
                 json: true
             })
             .then(data =>{
+                console.log(data.body)
                 resolve(data.headers);
             })
             .catch(error => {
+                if (error.statusCode === 404) return resolve(error.headers);
+                                                            
                 reject({
                     statuscode: error.statusCode,
                     message: error.statusMessage
