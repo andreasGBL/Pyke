@@ -16,12 +16,14 @@ module.exports = class status {
             got.get(`https://${regionId + api_url + endpoints.platform.thirdpartycode + summonerId}`, {
                 headers:{
                     "X-Riot-Token": this.api_key
-                },
-                json: true
+                }
             })
             .then(data =>{
-                console.log(data.body)
-                resolve(data.headers);
+                // vérification ok
+                resolve({
+                    statusCode: 200,
+                    msg: data.body
+                });
             })
             .catch(error => {
                 if (error.statusCode === 404) return resolve(error.headers);
