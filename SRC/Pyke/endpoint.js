@@ -19,7 +19,7 @@ module.exports = {
     },
     //League V4
     league: {
-        bysummonerId: '/lol/league/v4/positions/by-summoner/',
+        bysummonerId: '/lol/league/v4/entries/by-summoner/',
         masterleagues: '/lol/league/v4/masterleagues/by-queue/',
         leagues: '/lol/league/v4/leagues/',
         challengerleagues: '/lol/league/v4/challengerleagues/by-queue/'
