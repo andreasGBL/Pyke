@@ -12,7 +12,7 @@
   <a href="https://www.npmjs.com/package/pyke" rel="nofollow"><img src="https://nodei.co/npm/pyke.png" alt="NPM Pyke"></a>
 </div>
 
-## npm (3.1.0)
+## npm (3.1.1)
 
 ```sh
   npm i --save pyke
