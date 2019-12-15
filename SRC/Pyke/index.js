@@ -30,7 +30,10 @@ class Pyke {
                   if (mypackage.version === resp.body.beta) return console.log("Warning : You used of beta version");
                   return console.log(`Your version ${mypackage.version} is out dated, latest version is ${resp.body.latest} and beta github is ${resp.body.beta}`);
                 })
-                .catch(err => console.log("Impossible of verified if Pyke is up to date"))
+                .catch(err => {
+                    console.log("Impossible of verified if Pyke is up to date")
+                    console.log(err);
+                })
         })();
         this.summoner = new summonerv4(this.api_key, this.option_cache); // Summoner V3
         this.masteries = new championmasteriesv4(this.api_key, this.option_cache); // Masteries v3
