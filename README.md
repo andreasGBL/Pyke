@@ -52,7 +52,7 @@ Version 1.0.4 => Create reposit Pyke <br />
 ```javascript
 const {DDragon, Pyke} = require('pyke');
 
-const pyke = new Pyke(`Here my API KEY`, "10"); // 10 seconds to cache
+const pyke = new Pyke(`Here my API KEY`, 10); // 10 seconds to cache
 pyke.summoner.getBySummonerName("DoctaEnkoda", "euw1").then(data => {
   console.log(`Summoner Name is : ${data.name}, and level is : ${data.summonerLevel}`);
 }).catch(console.error);
