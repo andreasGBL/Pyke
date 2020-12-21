@@ -38,6 +38,10 @@ declare module 'pyke' {
         public status:{
             getShardData(regionId: regionId): Promise<shardata>
         }
+        public clash:{
+            getPlayersBySummonerId(summonerId: String, regionId: regionId):Promise<Array>,
+            getTeamsbyTeamId(teamId: String, regionId: regionId):Promise<Object>
+        }
     }
 
 

@@ -7,6 +7,7 @@ const spectatorv4 = require('./lib/SPECTATOR/spectator');
 const apistatusv3 = require('./APIStatusAPI/index.js');
 const mypackage = require("../../package.json");
 const lib_ddragon = require('./lib_ddragon/lol-static-data');
+const clashv1 = require('./lib/CLASH/clash')
 const got = require('got');
 const thirdpartycode = require('./lib/third-party-code/thirdpartycode');
 const LRU = require("lru-cache");
@@ -47,6 +48,7 @@ class Pyke {
         }
         this.status = new apistatusv3(); //API Status V3
         this.thirdpartycode = new thirdpartycode(this.api_key);
+        this.clash = new clashv1(this.api_key, this.option_cache); //Clash
     }; 
 }
 

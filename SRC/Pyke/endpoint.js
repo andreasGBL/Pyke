@@ -44,5 +44,11 @@ module.exports = {
     //platform
     platform: {
         thirdpartycode: '/lol/platform/v4/third-party-code/by-summoner/'
+    },
+    //clash
+    clash: {
+        players: '/lol/clash/v1/players/by-summoner/',
+        teams: '/lol/clash/v1/teams/',
+        
     }
 }
