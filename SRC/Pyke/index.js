@@ -17,7 +17,7 @@ class Pyke {
     constructor(api_key, cache) {
         this.api_key = api_key; // Your API_KEY https://developer.riotgames.com/
         this.option_cache = new LRU({
-            max: 500, 
+            max: 5000, 
             length: function (n, key) { 
                 return n * 2 + key.length 
             },  
