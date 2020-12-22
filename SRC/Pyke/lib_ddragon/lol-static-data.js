@@ -24,8 +24,10 @@ module.exports = class Download {
     async getChampionList(opts) {
         var locale = opts.locale || "fr_FR";
         var version = opts.version || (await this.getVersions())[0];
+        var full = opts.full || false;
+        var fullString = full ? "Full" : "";
         return new Promise((resolve, reject) =>{
-            got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/championFull.json`, {
+            got.get(`https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}/champion${fullString}.json`, {
                 json: true
             }).catch(err => { reject({ status: { status_code: err.statusCode, message: err.statusMessage } }) })
             .then(data =>{
