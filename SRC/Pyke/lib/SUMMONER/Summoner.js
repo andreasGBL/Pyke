@@ -3,10 +3,9 @@ const got = require('got');
 var api_url = ".api.riotgames.com";
 //coverage 100%
 module.exports = class Summoner {
-    constructor(api_key, LRU, withHeaderInformation) {
+    constructor(api_key, LRU) {
         this.api_key = api_key;
         this.LRU = LRU;
-        this.withHeaderInformation = withHeaderInformation;
     }
     /**
      * 

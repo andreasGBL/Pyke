@@ -4,10 +4,9 @@ var api_url = ".api.riotgames.com";
 // Coverage 100%
 
 module.exports = class champion {
-    constructor(api_key, LRU, withHeaderInformation){
+    constructor(api_key, LRU){
         this.api_key = api_key;
         this.LRU = LRU;
-        this.withHeaderInformation = withHeaderInformation;
     }
     /**
      * 

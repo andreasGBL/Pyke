@@ -37,19 +37,19 @@ class Pyke {
                     console.log(err);
                 })
         })();
-        this.summoner = new summonerv4(this.api_key, this.option_cache, withHeaderInformation); // Summoner V3
-        this.masteries = new championmasteriesv4(this.api_key, this.option_cache, withHeaderInformation); // Masteries v3
-        this.champion = new championv4(this.api_key, this.option_cache, withHeaderInformation); // champion
-        this.league = new leaguev4(this.api_key, this.option_cache, withHeaderInformation); // League
-        this.match = new matchv4(this.api_key, this.option_cache, withHeaderInformation); // Match
-        this.spectator = new spectatorv4(this.api_key, withHeaderInformation); // Ingame      
+        this.summoner = new summonerv4(this.api_key, this.option_cache); // Summoner V3
+        this.masteries = new championmasteriesv4(this.api_key, this.option_cache); // Masteries v3
+        this.champion = new championv4(this.api_key, this.option_cache); // champion
+        this.league = new leaguev4(this.api_key, this.option_cache); // League
+        this.match = new matchv4(this.api_key, this.option_cache); // Match
+        this.spectator = new spectatorv4(this.api_key); // Ingame      
         this.discord = {
              "RiotAPI":'`https://discord.gg/riotapi',
             "support_lib": "https://discord.gg/QgUnuk8"
         }
         this.status = new apistatusv3(); //API Status V3
-        this.thirdpartycode = new thirdpartycode(this.api_key, withHeaderInformation);
-        this.clash = new clashv1(this.api_key, this.option_cache, withHeaderInformation); //Clash
+        this.thirdpartycode = new thirdpartycode(this.api_key);
+        this.clash = new clashv1(this.api_key, this.option_cache); //Clash
     }; 
 }
 
