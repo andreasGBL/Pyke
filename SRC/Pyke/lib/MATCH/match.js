@@ -3,7 +3,7 @@ const got = require('got');
 var api_url = ".api.riotgames.com";
 
 module.exports = class status {
-    constructor(api_key, LRU) {
+    constructor(api_key, LRU){
         this.api_key = api_key;
         this.LRU = LRU;
     }
@@ -13,27 +13,25 @@ module.exports = class status {
      * @param {String} matchId Match
      * 
      */
-    async getMatch(matchId, regionId) {
+    async getMatch (matchId, regionId) {
         return new Promise((resolve, reject) => {
             got.get(`https://${regionId + api_url + endpoints.match.matches + matchId}`, {
-                headers: {
+                headers:{
                     "X-Riot-Token": this.api_key
                 },
                 json: true,
                 cache: this.LRU
             })
-                .then(data => {
-                    let result = data.body;
-                    if (this.withHeaderInformation)
-                        result.responseHeaders = data.headers;
-                    resolve(result);
-                })
-                .catch(error => {
-                    reject({
-                        statuscode: error.statusCode,
-                        message: error.statusMessage
-                    });
-                })
+            .then(data =>{
+                var body = data.body;
+                resolve(body)
+            })
+            .catch(error => {
+                reject({
+                    statuscode: error.statusCode,
+                    message: error.statusMessage
+                });
+            })
         })
     }
     /**
@@ -42,24 +40,24 @@ module.exports = class status {
      * @param {String} accountId accountId
      * @param {JSON} opts {endTime: String, beginIndex: String, beginTime: String, champion: String, endIndex: String, queue: String, season = String}
      */
-    async getMatchlist(accountId, regionId, opts) {
+    async getMatchlist (accountId, regionId, opts){
         if (!opts) opts = {
-            endTime: '',
-            beginIndex: '',
-            beginTime: '',
-            champion: '',
-            endIndex: '',
-            queue: '',
+            endTime: '', 
+            beginIndex: '', 
+            beginTime: '', 
+            champion: '', 
+            endIndex: '', 
+            queue: '', 
             season: ''
         }
-        return new Promise((resolve, reject) => {
-            got.get(`https://${regionId + api_url + endpoints.match.matchlists + accountId}`, {
-                headers: {
+        return new Promise ((resolve, reject) =>{
+             got.get(`https://${regionId + api_url + endpoints.match.matchlists + accountId }`, {
+                headers:{
                     "X-Riot-Token": this.api_key
                 },
                 json: true,
                 cache: this.LRU,
-                query: {
+                query:{
                     endTime: opts.endTime,
                     beginIndex: opts.beginIndex,
                     beginTime: opts.beginTime,
@@ -69,18 +67,15 @@ module.exports = class status {
                     season: opts.season
                 }
             })
-                .then(data => {
-                    let result = data.body;
-                    if (this.withHeaderInformation)
-                        result.responseHeaders = data.headers;
-                    resolve(result);
-                })
-                .catch(error => {
-                    reject({
-                        statuscode: error.statusCode,
-                        message: error.statusMessage
-                    });
-                })
+            .then(data =>{
+                resolve(data.body);
+            })
+            .catch(error => {
+                reject({
+                    statuscode: error.statusCode,
+                    message: error.statusMessage
+                });
+            })
         })
     }
     /**
@@ -88,31 +83,28 @@ module.exports = class status {
      * @param {String} accountId accountId
      * @param {String} matchId Match
      */
-    async getMatchlistRecent(accountId, regionId) {
+    async getMatchlistRecent (accountId, regionId) {
         console.warn('Recent is not an Endpoints official but I is created by endIndex, next time used getMatchlist()');
-        return new Promise((resolve, reject) => {
-            got.get(`https://${regionId + api_url + endpoints.match.matchlists + accountId}`, {
-                headers: {
+        return new Promise ((resolve, reject) =>{
+            got.get(`https://${regionId + api_url + endpoints.match.matchlists + accountId }`, {
+                headers:{
                     "X-Riot-Token": this.api_key
                 },
                 json: true,
                 cache: this.LRU,
-                query: {
+                query:{
                     endIndex: 20
                 }
             })
-                .then(data => {
-                    let result = data.body;
-                    if (this.withHeaderInformation)
-                        result.responseHeaders = data.headers;
-                    resolve(result);
-                })
-                .catch(error => {
-                    reject({
-                        statuscode: error.statusCode,
-                        message: error.statusMessage
-                    });
-                })
+            .then(data =>{
+                resolve(data.body);
+            })
+            .catch(error => {
+                reject({
+                    statuscode: error.statusCode,
+                    message: error.statusMessage
+                });
+            })
         })
     }
 
@@ -122,31 +114,28 @@ module.exports = class status {
      * @param {String} matchId Match
      * @returns {Promise<{frameInterval: String, frames: Array}>}
      */
-    async getMatchTimeline(regionId, matchId) {
-        return new Promise((resolve, reject) => {
-            got.get(`https://${regionId + api_url + endpoints.match.timelines + matchId}`, {
-                headers: {
+    async getMatchTimeline (regionId, matchId) {
+        return new Promise ((resolve, reject) =>{
+             got.get(`https://${regionId + api_url + endpoints.match.timelines + matchId}`,{
+                headers:{
                     "X-Riot-Token": this.api_key
                 },
                 json: true,
                 cache: this.LRU
             })
-                .then(data => {
-                    var body = data.body;
-                    let result = {
-                        frameInterval: body.frameInterval,
-                        frames: body.frames
-                    };
-                    if(this.withHeaderInformation)
-                        result.responseHeaders = data.headers;
-                    resolve(result);
+            .then(data =>{
+                var body = data.body;
+                resolve({
+                    frameInterval: body.frameInterval,
+                    frames: body.frames
                 })
-                .catch(error => {
-                    reject({
-                        statuscode: error.statusCode,
-                        message: error.statusMessage
-                    });
-                })
+            })
+            .catch(error => {
+                reject({
+                    statuscode: error.statusCode,
+                    message: error.statusMessage
+                });
+            })
         });
     }
     /**
@@ -155,27 +144,24 @@ module.exports = class status {
      * @param {String} tournamentCode tournamentCode
      * @returns {Promise<{}>}
      */
-    async getMatchIdsByTournamentCode(regionId, tournamentCode) {
-        return new Promise((resolve, reject) => {
-            got.get(`https://${regionId + api_url + endpoints.match.tournament + tournamentCode + '/ids'}`, {
-                headers: {
-                    "X-Riot-Token": this.api_key
-                },
-                json: true,
-                cache: this.LRU
+    async getMatchIdsByTournamentCode (regionId, tournamentCode) {
+        return new Promise((resolve, reject) =>{
+            got.get(`https://${regionId + api_url + endpoints.match.tournament + tournamentCode + '/ids'}`,{
+            headers:{
+                "X-Riot-Token": this.api_key
+            },
+            json: true,
+            cache: this.LRU
             })
-                .then(data => {
-                    let result = data.body;
-                    if (this.withHeaderInformation)
-                        result.responseHeaders = data.headers;
-                    resolve(result);
-                })
-                .catch(error => {
-                    reject({
-                        statuscode: error.statusCode,
-                        message: error.statusMessage
-                    });
-                })
+            .then(data =>{
+                resolve(data.body)
+            })
+            .catch(error => {
+                reject({
+                    statuscode: error.statusCode,
+                    message: error.statusMessage
+                });
+            })
         })
     }
     /**
@@ -185,27 +171,24 @@ module.exports = class status {
      * @param {String} tournamentCode tournamentCode
      * @returns {Promise<{}>}
      */
-    async getMatchByTournamentCode(regionId, matchId, tournamentCode) {
-        return new Promise((resolve, reject) => {
-            got.get(`https://${regionId + api_url + endpoints.match.tournament + matchId + endpoints.match.matchid_tournament + tournamentCode}`, {
-                headers: {
-                    "X-Riot-Token": this.api_key
-                },
-                json: true,
-                cache: this.LRU
-            })
-                .then(data => {
-                    let result = data.body;
-                    if(this.withHeaderInformation)
-                        result.responseHeaders = data.headers;
-                    resolve(result);
-                })
-                .catch(error => {
-                    reject({
-                        statuscode: error.statusCode,
-                        message: error.statusMessage
-                    });
-                })
+    async getMatchByTournamentCode (regionId, matchId, tournamentCode) {
+        return new Promise((resolve, reject) =>{
+          got.get(`https://${regionId + api_url + endpoints.match.tournament + matchId + endpoints.match.matchid_tournament + tournamentCode}`,{
+            headers:{
+                "X-Riot-Token": this.api_key
+            },
+            json: true,
+            cache: this.LRU
+        })
+        .then(data =>{
+            resolve(data.body)
+        })
+        .catch(error => {
+            reject({
+                statuscode: error.statusCode,
+                message: error.statusMessage
+            });
+        })  
         })
     }
 }
