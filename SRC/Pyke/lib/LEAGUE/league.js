@@ -2,7 +2,7 @@ const endpoints = require('../../endpoint');
 const got = require('got');
 var api_url = ".api.riotgames.com";
 
-module.exports = class League{
+module.exports = class League {
     constructor(api_key, LRU) {
         this.api_key = api_key;
         this.LRU = LRU;
@@ -14,20 +14,23 @@ module.exports = class League{
      * @param {String} queue RANKED_SOLO_5x5 / RANKED_FLEX_SR / RANKED_FLEX_TT
      */
 
-    async getChallengerLeague (regionId, queue){
-        return new Promise ((resolve, reject) =>{
+    async getChallengerLeague(regionId, queue) {
+        return new Promise((resolve, reject) => {
             got.get(`https://${regionId + api_url + endpoints.league.challengerleagues + queue + '?api_key=' + this.api_key}`, {
-                json: true, cache: this.LRU 
+                json: true, cache: this.LRU
             })
-            .then(data =>{
-                resolve(data.body);
-            })
-            .catch(error => {
-                reject({
-                    statuscode: error.statusCode,
-                    message: error.statusMessage
-                });
-            })
+                .then(data => {
+                    let result = data.body;
+                    if (this.withHeaderInformation)
+                        result.responseHeaders = data.headers;
+                    resolve(result);
+                })
+                .catch(error => {
+                    reject({
+                        statuscode: error.statusCode,
+                        message: error.statusMessage
+                    });
+                })
         })
     }
     /**
@@ -35,20 +38,23 @@ module.exports = class League{
      * @param {String} regionId Region
      * @param {String} leagueId 
      */
-    async getLeagueById (regionId, leagueId){
-        return new Promise((resolve, reject) =>{
+    async getLeagueById(regionId, leagueId) {
+        return new Promise((resolve, reject) => {
             got.get(`https://${regionId + api_url + endpoints.league.leagues + leagueId + '?api_key=' + this.api_key}`, {
                 json: true
             })
-            .then(data => {
-                resolve(data);
-            })
-            .catch(error => {
-                reject({
-                    statuscode: error.statusCode,
-                    message: error.statusMessage
-                });
-            })
+                .then(data => {
+                    let result = data.body;
+                    if (this.withHeaderInformation)
+                        result.responseHeaders = data.headers;
+                    resolve(result);
+                })
+                .catch(error => {
+                    reject({
+                        statuscode: error.statusCode,
+                        message: error.statusMessage
+                    });
+                })
         })
     }
 
@@ -57,20 +63,23 @@ module.exports = class League{
      * @param {String} regionId Region
      * @param {String} queue RANKED_SOLO_5x5 / RANKED_FLEX_SR / RANKED_FLEX_TT
      */
-    async getMasterLeague (regionId, queue) {
-        return new Promise ((resolve, reject) =>{
+    async getMasterLeague(regionId, queue) {
+        return new Promise((resolve, reject) => {
             got.get(`https://${regionId + api_url + endpoints.league.masterleagues + queue + '?api_key=' + this.api_key}`, {
-                json: true, cache: this.LRU 
+                json: true, cache: this.LRU
             })
-            .then(data =>{
-                resolve(data.body);
-            })
-            .catch(error => {
-                reject({
-                    statuscode: error.statusCode,
-                    message: error.statusMessage
-                });
-            })
+                .then(data => {
+                    let result = data.body;
+                    if (this.withHeaderInformation)
+                        result.responseHeaders = data.headers;
+                    resolve(result);
+                })
+                .catch(error => {
+                    reject({
+                        statuscode: error.statusCode,
+                        message: error.statusMessage
+                    });
+                })
         })
     }
 
@@ -83,7 +92,7 @@ module.exports = class League{
     async getAllLeaguePositionsForSummoner(summonerId, regionId) {
         return new Promise((resolve, reject) => {
             got.get(`https://${regionId + api_url + endpoints.league.bysummonerId + summonerId + '?api_key=' + this.api_key}`, {
-                json: true, cache: this.LRU 
+                json: true, cache: this.LRU
             }).then(data => {
                 var arr = new Array(data.body.length);
                 arr = data.body;
@@ -145,8 +154,7 @@ module.exports = class League{
                         hotStreak: false
                     };
                 }
-                
-                resolve({
+                let result = {
                     all: {
                         RANKED_SOLO_5x5: RANKED_SOLO_5x5,
                         RANKED_FLEX_SR: RANKED_FLEX_SR,
@@ -155,7 +163,11 @@ module.exports = class League{
                     RANKED_SOLO_5x5: RANKED_SOLO_5x5,
                     RANKED_FLEX_SR: RANKED_FLEX_SR,
                     RANKED_FLEX_TT: RANKED_FLEX_TT
-                });
+                };
+                if (this.withHeaderInformation)
+                    result.responseHeaders = data.headers;
+                resolve(result);
+                resolve();
             }).catch(error => {
                 console.log(error)
                 reject({

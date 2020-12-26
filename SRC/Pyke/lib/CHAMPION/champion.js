@@ -19,7 +19,10 @@ module.exports = class champion {
             if (freeToPlay !== true) freeToPlay = false;
             got.get(`https://${regionId + api_url + endpoints.champion.championList + '?freeToPlay=' + freeToPlay + '&api_key=' + this.api_key}`, {json :true, cache: this.LRU })
                 .then(data =>{
-                    resolve(data.body);
+                    let result = data.body;
+                    if(this.withHeaderInformation)
+                        result.responseHeaders = data.headers;
+                    resolve(result);
                 })
                 .catch(error => {
                     reject({
@@ -45,14 +48,17 @@ module.exports = class champion {
             got.get(`https://${regionId + api_url + endpoints.champion.championById + championId + '?api_key=' + this.api_key}`,{json : true, cache: this.LRU })
                 .then(data =>{
                     var body = data.body;
-                    resolve({
+                    let result = {
                         rankedPlayEnabled: body.rankedPlayEnabled,
                         botEnabled: body.botEnabled,
                         botMmEnabled: body.botMmEnabled,
                         active: body.active,
                         freeToPlay: body.freeToPlay,
                         id: body.id
-                    })
+                    };
+                    if(this.withHeaderInformation)
+                        result.responseHeaders = data.headers;
+                    resolve(result);
                 })
                 .catch(error => {
                     reject({

@@ -1,6 +1,6 @@
 declare module 'pyke' {
     export class Pyke {
-        constructor(api_key: String, cache: Number);
+        constructor(api_key: String, cache: Number, withHeaderInformation: Boolean);
         public summoner: {
             getBySummonerName(summonerName: String, regionId: regionId): Promise<SummonerInfo>,
             getBySummonerId(summonerId: String, regionId: regionId): Promise<SummonerInfo>

@@ -1,9 +1,9 @@
 const endpoints = require('../../endpoint');
 const got = require('got');
 var api_url = ".api.riotgames.com";
-    //coverage 100%
+//coverage 100%
 module.exports = class Summoner {
-    constructor(api_key, LRU){
+    constructor(api_key, LRU) {
         this.api_key = api_key;
         this.LRU = LRU;
     }
@@ -16,14 +16,14 @@ module.exports = class Summoner {
     async getBySummonerName(summonerName, regionId) {
         return new Promise((resolve, reject) => {
             got.get(`https://${regionId + api_url + endpoints.summoner.summonerName + encodeURIComponent(summonerName)}`, {
-                headers:{
+                headers: {
                     "X-Riot-Token": this.api_key
                 },
-               json: true,
+                json: true,
                 cache: this.LRU
             }).then(data => {
                 var body = data.body;
-                resolve({
+                let result = {
                     id: body.id,
                     accountId: body.accountId,
                     summonerLevel: body.summonerLevel,
@@ -31,7 +31,10 @@ module.exports = class Summoner {
                     profileIconUrl: `https://avatar.leagueoflegends.com/${regionId}/${encodeURIComponent(summonerName)}.png`,
                     name: body.name,
                     puuid: body.puuid
-                });
+                };
+                if (this.withHeaderInformation)
+                    result.responseHeaders = data.headers;
+                resolve(result);
             }).catch(error => {
                 reject({
                     statuscode: error.statusCode,
@@ -49,14 +52,14 @@ module.exports = class Summoner {
     async getBySummonerId(summonerId, regionId) {
         return new Promise(async (resolve, reject) => {
             got.get(`https://${regionId + api_url + endpoints.summoner.summonerId + summonerId}`, {
-                headers:{
+                headers: {
                     "X-Riot-Token": this.api_key
                 },
-               json: true,
+                json: true,
                 cache: this.LRU
             }).then(data => {
                 var body = data.body;
-                resolve({
+                let result = {
                     id: body.id,
                     accountId: body.accountId,
                     summonerLevel: body.summonerLevel,
@@ -64,7 +67,10 @@ module.exports = class Summoner {
                     name: body.name,
                     profileIconUrl: `https://avatar.leagueoflegends.com/${regionId}/${encodeURIComponent(body.name)}.png`,
                     puuid: body.puuid
-                });
+                };
+                if (this.withHeaderInformation)
+                    result.responseHeaders = data.headers;
+                resolve(result);
             }).catch(error => {
                 reject({
                     statuscode: error.statusCode,
@@ -73,19 +79,19 @@ module.exports = class Summoner {
             })
         })
     }
-    
+
     async getByPUUID(puuid, regionId) {
         return new Promise((resolve, reject) => {
-            got.get(`https://${regionId + api_url + endpoints.summoner.puuid + puuid}`,  {
-                headers:{
+            got.get(`https://${regionId + api_url + endpoints.summoner.puuid + puuid}`, {
+                headers: {
                     "X-Riot-Token": this.api_key
                 },
-               json: true,
+                json: true,
                 cache: this.LRU
-                
+
             }).then(data => {
                 var body = data.body;
-                resolve({
+                let result = {
                     id: body.id,
                     accountId: body.accountId,
                     summonerLevel: body.summonerLevel,
@@ -93,7 +99,10 @@ module.exports = class Summoner {
                     name: body.name,
                     profileIconUrl: `https://avatar.leagueoflegends.com/${regionId}/${encodeURIComponent(body.name)}.png`,
                     puuid: body.puuid
-                });
+                };
+                if (this.withHeaderInformation)
+                    result.responseHeaders = data.headers;
+                resolve(result);
             }).catch(error => {
                 reject({
                     statuscode: error.statusCode,
@@ -110,15 +119,15 @@ module.exports = class Summoner {
      */
     async getByAccountId(accountId, regionId) {
         return new Promise((resolve, reject) => {
-            got.get(`https://${regionId + api_url + endpoints.summoner.accountId + accountId}`,  {
-                headers:{
+            got.get(`https://${regionId + api_url + endpoints.summoner.accountId + accountId}`, {
+                headers: {
                     "X-Riot-Token": this.api_key
                 },
-               json: true,
-               cache: this.LRU
+                json: true,
+                cache: this.LRU
             }).then(data => {
                 var body = data.body;
-                resolve({
+                let result = {
                     id: body.id,
                     accountId: body.accountId,
                     summonerLevel: body.summonerLevel,
@@ -126,7 +135,10 @@ module.exports = class Summoner {
                     name: body.name,
                     profileIconUrl: `https://avatar.leagueoflegends.com/${regionId}/${encodeURIComponent(body.name)}.png`,
                     puuid: body.puuid
-                });
+                };
+                if (this.withHeaderInformation)
+                    result.responseHeaders = data.headers;
+                resolve(result);
             }).catch(error => {
                 reject({
                     statuscode: error.statusCode,

@@ -23,7 +23,10 @@ module.exports = class Champion {
                 cache: this.LRU
             })
                 .then(data => {
-                    resolve(data.body);
+                    let result = data.body;
+                    if(this.withHeaderInformation)
+                        result.responseHeaders = data.headers;
+                    resolve(result);
                 })
                 .catch(error => {
                     reject({
@@ -49,7 +52,7 @@ module.exports = class Champion {
             got.get(`https://${regionId + api_url + endpoints.champion_mastery.masteryById + summonerId + endpoints.champion_mastery.masteryByIdByChampionId + championId +  '?api_key=' + this.api_key}`, { json: true, cache: this.LRU })
                 .then(data => {
                     var body = data.body;
-                    resolve({
+                    let result = {
                         championLevel: body.championLevel,
                         chestGranted: body.chestGranted,
                         championPoints: body.championPoints,
@@ -59,7 +62,10 @@ module.exports = class Champion {
                         tokensEarned: body.tokensEarned,
                         championId: body.championId,
                         lastPlayTime: body.lastPlayTime
-                    })
+                    };
+                    if(this.withHeaderInformation)
+                        result.responseHeaders = data.headers;
+                    resolve(result);
                 })
                 .catch(error => {
                     reject({
@@ -82,9 +88,12 @@ module.exports = class Champion {
                 json: true
             })
                 .then(data => {
-                    resolve({
+                    let result = {
                         score: data.body
-                    })
+                    };
+                    if(this.withHeaderInformation)
+                        result.responseHeaders = data.headers;
+                    resolve(result);
                 })
                 .catch(error => {
                     reject({

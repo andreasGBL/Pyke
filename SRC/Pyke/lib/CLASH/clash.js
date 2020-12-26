@@ -3,7 +3,7 @@ const got = require('got');
 var api_url = ".api.riotgames.com";
 
 module.exports = class Clash {
-    constructor(api_key, LRU){
+    constructor(api_key, LRU) {
         this.api_key = api_key;
         this.LRU = LRU;
     }
@@ -16,16 +16,16 @@ module.exports = class Clash {
     async getPlayersBySummonerId(summonerId, regionId) {
         return new Promise((resolve, reject) => {
             got.get(`https://${regionId + api_url + endpoints.clash.players + summonerId}`, {
-                headers:{
+                headers: {
                     "X-Riot-Token": this.api_key
                 },
-               json: true,
+                json: true,
                 cache: this.LRU
             }).then(data => {
-                var body = data.body;
-                resolve(
-                    body
-                );
+                let result = data.body;
+                if (this.withHeaderInformation)
+                    result.responseHeaders = data.headers;
+                resolve(result);
             }).catch(error => {
                 reject({
                     statuscode: error.statusCode,
@@ -43,23 +43,16 @@ module.exports = class Clash {
     async getTeamsByTeamId(teamId, regionId) {
         return new Promise(async (resolve, reject) => {
             got.get(`https://${regionId + api_url + endpoints.clash.teams + teamId}`, {
-                headers:{
+                headers: {
                     "X-Riot-Token": this.api_key
                 },
-               json: true,
+                json: true,
                 cache: this.LRU
             }).then(data => {
-                var body = data.body;
-                resolve({
-                    id: body.id,
-                    tournamentId: body.tournamentId,
-                    name: body.name,
-                    iconId: body.iconId,
-                    tier: body.tier,
-                    captain: body.captain,
-                    abbreviation: body.abbreviation,
-                    players: body.players
-                });
+                let result = data.body;
+                if (this.withHeaderInformation)
+                    result.responseHeaders = data.headers;
+                resolve(result);
             }).catch(error => {
                 reject({
                     statuscode: error.statusCode,

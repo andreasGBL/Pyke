@@ -14,7 +14,7 @@ const LRU = require("lru-cache");
 
 //Riot API
 class Pyke {
-    constructor(api_key, cache) {
+    constructor(api_key, cache, withHeaderInformation) {
         this.api_key = api_key; // Your API_KEY https://developer.riotgames.com/
         this.option_cache = new LRU({
             max: 5000, 
@@ -23,6 +23,7 @@ class Pyke {
             },  
             maxAge: cache || 1000
         }); // Your Cache to seconds
+        this.withHeaderInformation = withHeaderInformation || false;
         this.lastversion = (() => {
              got.get("https://raw.githubusercontent.com/systeme-cardinal/Pyke/master/SRC/Pyke/version.json", { json: true })
                 .then(resp =>{
