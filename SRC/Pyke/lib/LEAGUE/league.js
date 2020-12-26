@@ -3,9 +3,10 @@ const got = require('got');
 var api_url = ".api.riotgames.com";
 
 module.exports = class League {
-    constructor(api_key, LRU) {
+    constructor(api_key, LRU, withHeaderInformation) {
         this.api_key = api_key;
         this.LRU = LRU;
+        this.withHeaderInformation = withHeaderInformation;
     }
 
     /**

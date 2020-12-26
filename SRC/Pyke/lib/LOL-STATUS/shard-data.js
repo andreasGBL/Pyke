@@ -3,8 +3,9 @@ const got = require('got');
 var api_url = ".api.riotgames.com";
 
 module.exports = class status {
-    constructor(api_key) {
+    constructor(api_key, withHeaderInformation) {
         this.api_key = api_key;
+        this.withHeaderInformation = withHeaderInformation;
     }
     /**
      * 
