@@ -8,14 +8,14 @@
     "test": "node ./Exemple/Exemple-ddragon.js"
   },
   "engines": {
-     "node": ">=8.6"
+    "node": ">=8.6"
   },
   "repository": "https://github.com/systeme-cardinal/node-Pyke.git",
   "author": "DoctaEnkoda <bierquejason@gmail.com>",
   "license": "GPL-3.0",
   "dependencies": {
     "got": "^9.6.0",
-    "lru-cache": "^5.1.1"
+    "tiny-lru": "^7.0.6"
   },
   "keywords": [
     "riot",

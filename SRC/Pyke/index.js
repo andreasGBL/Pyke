@@ -10,19 +10,13 @@ const lib_ddragon = require('./lib_ddragon/lol-static-data');
 const clashv1 = require('./lib/CLASH/clash')
 const got = require('got');
 const thirdpartycode = require('./lib/third-party-code/thirdpartycode');
-const LRU = require("lru-cache");
+const LRU = require("tiny-lru");
 
 //Riot API
 class Pyke {
     constructor(api_key, cache) {
         this.api_key = api_key; // Your API_KEY https://developer.riotgames.com/
-        this.option_cache = new LRU({
-            max: 5000, 
-            length: function (n, key) { 
-                return n * 2 + key.length 
-            },  
-            maxAge: cache || 1000
-        }); // Your Cache to seconds
+        this.option_cache = new LRU(5000, cache || 30 * 60 * 1000); // Your Cache to seconds
         this.lastversion = (() => {
              got.get("https://raw.githubusercontent.com/systeme-cardinal/Pyke/master/SRC/Pyke/version.json", { json: true })
                 .then(resp =>{
