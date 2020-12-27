@@ -16,7 +16,7 @@ const LRU = require("tiny-lru");
 class Pyke {
     constructor(api_key, cache) {
         this.api_key = api_key; // Your API_KEY https://developer.riotgames.com/
-        this.option_cache = new LRU(5000, cache || 30 * 60 * 1000); // Your Cache to seconds
+        this.option_cache = new LRU(500, cache || 30 * 60 * 1000); // Your Cache to seconds
         this.lastversion = (() => {
              got.get("https://raw.githubusercontent.com/systeme-cardinal/Pyke/master/SRC/Pyke/version.json", { json: true })
                 .then(resp =>{
