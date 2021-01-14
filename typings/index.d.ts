@@ -40,7 +40,7 @@ declare module 'pyke' {
         }
         public clash:{
             getPlayersBySummonerId(summonerId: String, regionId: regionId):Promise<Array>,
-            getTeamsbyTeamId(teamId: String, regionId: regionId):Promise<Object>
+            getTeamsByTeamId(teamId: String, regionId: regionId):Promise<Object>
         }
     }
 
