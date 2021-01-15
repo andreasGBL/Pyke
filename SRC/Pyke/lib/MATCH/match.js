@@ -38,7 +38,7 @@ module.exports = class status {
      * 
      * @param {String} regionId Region
      * @param {String} accountId accountId
-     * @param {JSON} opts {endTime: String, beginIndex: String, beginTime: String, champion: String, endIndex: String, queue: String, season = String}
+     * @param {JSON} opts {endTime: String, beginIndex: String, beginTime: String, champion: String, endIndex: String, queue: String | Array<String>, season = String}
      */
     async getMatchlist (accountId, regionId, opts){
         if (!opts) opts = {
@@ -51,21 +51,27 @@ module.exports = class status {
             season: ''
         }
         return new Promise ((resolve, reject) =>{
+            //fix to be able to search for multiple queues
+            let queryArray = [];
+            Object.keys(opts).forEach(key => {
+                let val = opts[key];
+                if(typeof val !== "undefined"){
+                    if(Array.isArray(val)){
+                        val.forEach(value => {
+                            queryArray.push([key, value])
+                        });
+                    }else{
+                        queryArray.push([key, val]);
+                    }
+                }
+            });
              got.get(`https://${regionId + api_url + endpoints.match.matchlists + accountId }`, {
                 headers:{
                     "X-Riot-Token": this.api_key
                 },
                 json: true,
                 cache: this.LRU,
-                query:{
-                    endTime: opts.endTime,
-                    beginIndex: opts.beginIndex,
-                    beginTime: opts.beginTime,
-                    champion: opts.champion,
-                    endIndex: opts.endIndex,
-                    queue: opts.queue,
-                    season: opts.season
-                }
+                query: queryArray
             })
             .then(data =>{
                 resolve(data.body);
